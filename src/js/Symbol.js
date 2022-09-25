@@ -1,38 +1,39 @@
-const cache = {};
-
 export default class Symbol {
-  constructor(name = Symbol.random()) {
-    this.name = name;
 
-    if (cache[name]) {
-      this.img = cache[name].cloneNode();
-    } else {
-      this.img = new Image();
-      this.img.src = require(`../assets/symbols/${name}.svg`);
+  constructor()
+  {
+    this.cache = {};
+    this.dataPool;
+    this.data;
+  }
 
-      cache[name] = this.img;
+  get data()
+  {
+    return[];
+  }
+
+  preload() {
+    populateDataPool();
+  }
+
+  populateDataPool()
+  {
+    dataPool = this.data;
+    console.log(dataPool);
+  }
+
+  popData()
+  {
+    //if the flag pool is empty, populate!
+    if(dataPool.length === 0)
+      this.populateDataPool();
+
+      while(dataPool.length ) {
+        var index = Math.floor( Math.random()*dataPool.length );
+        var item = dataPool[index];
+        console.log(item); // Log the item
+        dataPool.splice( index, 1 ); // Remove the item from the array
+        return item;
     }
-  }
-
-  static preload() {
-    Symbol.symbols.forEach((symbol) => new Symbol(symbol));
-  }
-
-  static get symbols() {
-    return [
-      "at_at",
-      "c3po",
-      "darth_vader",
-      "death_star",
-      "falcon",
-      "r2d2",
-      "stormtrooper",
-      "tie_ln",
-      "yoda",
-    ];
-  }
-
-  static random() {
-    return this.symbols[Math.floor(Math.random() * this.symbols.length)];
   }
 }

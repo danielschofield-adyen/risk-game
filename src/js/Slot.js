@@ -1,30 +1,21 @@
 import Reel from "./Reel.js";
 import Symbol from "./Symbol.js";
+import Flag from "./Flag.js";
+import GameController from "./GameController.js";
+
+let controller = new GameController();
+let numOfReels = 0;
 
 export default class Slot {
   constructor(domElement, config = {}) {
-    Symbol.preload();
 
-    this.currentSymbols = [
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-    ];
-
-    this.nextSymbols = [
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-      ["death_star", "death_star", "death_star"],
-    ];
-
+    //initialise the container
     this.container = domElement;
+    this.currentSymbols = [];
+    this.nextSymbols = [];
 
-    this.reels = Array.from(this.container.getElementsByClassName("reel")).map(
-      (reelContainer, idx) =>
+    //get reels from DOM
+    this.reels = Array.from(this.container.getElementsByClassName("reel")).map((reelContainer, idx) =>
         new Reel(reelContainer, idx, this.currentSymbols[idx])
     );
 
@@ -43,11 +34,11 @@ export default class Slot {
   spin() {
     this.currentSymbols = this.nextSymbols;
     this.nextSymbols = [
-      [Symbol.random(), Symbol.random(), Symbol.random()],
-      [Symbol.random(), Symbol.random(), Symbol.random()],
-      [Symbol.random(), Symbol.random(), Symbol.random()],
-      [Symbol.random(), Symbol.random(), Symbol.random()],
-      [Symbol.random(), Symbol.random(), Symbol.random()],
+      [new Flag(), new Flag(), new Flag()],
+      [new Flag(), new Flag(), new Flag()],
+      [new Flag(), new Flag(), new Flag()],
+      [new Flag(), new Flag(), new Flag()],
+      [new Flag(), new Flag(), new Flag()],
     ];
 
     this.onSpinStart(this.nextSymbols);
@@ -74,5 +65,19 @@ export default class Slot {
     if (this.autoPlayCheckbox.checked) {
       return window.setTimeout(() => this.spin(), 200);
     }
+  }
+
+  getSymbols()
+  {
+    var temp = [];
+    for(i = 0; i < numOfReels; i++)
+    {
+      foreach(pool in controller.pools)
+      { 
+        var item = pool.pop();
+        temp.push(item);
+      }
+    }
+    return temp;
   }
 }

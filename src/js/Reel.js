@@ -1,4 +1,5 @@
 import Symbol from "./Symbol.js";
+import Flag from "./Flag.js";
 
 export default class Reel {
   constructor(reelContainer, idx, initialSymbols) {
@@ -29,9 +30,9 @@ export default class Reel {
     );
     this.animation.cancel();
 
-    initialSymbols.forEach((symbol) =>
-      this.symbolContainer.appendChild(new Symbol(symbol).img)
-    );
+    /*initialSymbols.forEach((symbol) =>
+      this.symbolContainer.appendChild(new Flag().img)
+    );*/
   }
 
   get factor() {
@@ -42,7 +43,7 @@ export default class Reel {
     const fragment = document.createDocumentFragment();
 
     for (let i = 3; i < 3 + Math.floor(this.factor) * 10; i++) {
-      const icon = new Symbol(
+      const icon = new Flag(
         i >= 10 * Math.floor(this.factor) - 2
           ? nextSymbols[i - Math.floor(this.factor) * 10]
           : undefined
