@@ -2,7 +2,7 @@ body {
   width: 100vw;
   height: 100vh;
   padding: 1rem;
-  background-image: url("../assets/bg.jpg");
+  background-color: rgb(103, 171, 177);
   background-size: cover;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@ body {
 
 @media only screen and (max-width: 1200px) {
   body {
-    background-image: url("../assets/bg_small.jpg");
+    background-color: rgb(103, 171, 177);
   }
 }
 
@@ -76,4 +76,9 @@ input[type="checkbox"] {
 
 #slot.inverted .reel > .icons > img {
   transform: scaleY(-1);
+}
+
+.icons > img
+{
+  padding:20px;
 }

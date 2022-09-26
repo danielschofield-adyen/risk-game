@@ -1,26 +1,29 @@
-data = [];
+import FlagDataModel from "./FlagDataModel";
 
 export default class Pool
 {
+    data = [];
+
     constructor(array)
     {
-        poolData = array;
+        console.log(array);
+        this.data = array;
     }
 
     pop()
     {
-        while(data.length ) {
-          var index = Math.floor( Math.random()*data.length );
-          var item = data[index];
-          console.log("Getting item"+item); // Log the item
-          data.splice( index, 1 ); // Remove the item from the array
+        while(this.data.length ) {
+          var index = Math.floor( Math.random()*this.data.length );
+          var item = this.data[index];
+          console.log("Getting item " + item); // Log the item
+          //this.data.splice( index, 1 ); // Remove the item from the array
           return item;
       }
     }
 
     push(item)
     {
-        data.push(item);
+        this.data.push(item);
         console.log("Adding item: "+item);
     }
 }

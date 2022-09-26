@@ -1,23 +1,24 @@
 import Reel from "./Reel.js";
-import Symbol from "./Symbol.js";
-import Flag from "./Flag.js";
 import GameController from "./GameController.js";
-
-let controller = new GameController();
-let numOfReels = 0;
+import ImageView from "./ImageView.js";
+import { getSupportInfo } from "prettier";
 
 export default class Slot {
   constructor(domElement, config = {}) {
 
+    this.controller = new GameController();
     //initialise the container
     this.container = domElement;
-    this.currentSymbols = [];
-    this.nextSymbols = [];
+
+    this.currentSymbols = this.getSymbols();
+    this.nextSymbols = this.getSymbols();
 
     //get reels from DOM
     this.reels = Array.from(this.container.getElementsByClassName("reel")).map((reelContainer, idx) =>
         new Reel(reelContainer, idx, this.currentSymbols[idx])
     );
+
+    this.numOfReels = this.reels.length;
 
     this.spinButton = document.getElementById("spin");
     this.spinButton.addEventListener("click", () => this.spin());
@@ -33,13 +34,7 @@ export default class Slot {
 
   spin() {
     this.currentSymbols = this.nextSymbols;
-    this.nextSymbols = [
-      [new Flag(), new Flag(), new Flag()],
-      [new Flag(), new Flag(), new Flag()],
-      [new Flag(), new Flag(), new Flag()],
-      [new Flag(), new Flag(), new Flag()],
-      [new Flag(), new Flag(), new Flag()],
-    ];
+    this.nextSymbols = this.getSymbols();
 
     this.onSpinStart(this.nextSymbols);
 
@@ -69,15 +64,21 @@ export default class Slot {
 
   getSymbols()
   {
-    var temp = [];
-    for(i = 0; i < numOfReels; i++)
-    {
-      foreach(pool in controller.pools)
-      { 
+    var doubleArray = [];
+    var index = 0;
+    this.controller.pools.forEach(pool =>
+    { 
+      var temp = [];
+      for(let i = 0; i < 100; i++)
+      {
         var item = pool.pop();
         temp.push(item);
       }
-    }
-    return temp;
+      doubleArray[index] = temp;
+      console.log(doubleArray);
+      index++;
+    });
+
+    return doubleArray;
   }
 }

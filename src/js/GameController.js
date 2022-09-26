@@ -1,21 +1,27 @@
+import AmountDataModel from "./AmountDataModel.js";
 import FlagDataModel from "./FlagDataModel.js";
 import Pool from "./Pool.js";
-
-let flagPool;
-let pools = [];
 
 export default class GameController
 {
     constructor()
     {
+        this.pools = [];
         this.Initialise();
     }
 
     Initialise()
     {
-        flagModel = new FlagDataModel();
-        flagPool = new Pool(flagModel.data);
+        var flagModel = new FlagDataModel();
+        var flagPool = new Pool(flagModel.data);
 
-        pools.push(flagPool);
+        var amountModel = new AmountDataModel();
+        var amountModel = new Pool(amountModel.data);
+
+        this.pools.push(flagPool);        
+        this.pools.push(amountModel);       
+        this.pools.push(flagPool);        
+        this.pools.push(flagPool);        
+        this.pools.push(flagPool);
     }
 }

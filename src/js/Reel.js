@@ -1,5 +1,4 @@
-import Symbol from "./Symbol.js";
-import Flag from "./Flag.js";
+import ImageView from "./ImageView";
 
 export default class Reel {
   constructor(reelContainer, idx, initialSymbols) {
@@ -30,9 +29,9 @@ export default class Reel {
     );
     this.animation.cancel();
 
-    /*initialSymbols.forEach((symbol) =>
-      this.symbolContainer.appendChild(new Flag().img)
-    );*/
+    initialSymbols.forEach((symbol) =>
+      this.symbolContainer.appendChild(new ImageView(symbol).img)
+    );
   }
 
   get factor() {
@@ -42,15 +41,32 @@ export default class Reel {
   renderSymbols(nextSymbols) {
     const fragment = document.createDocumentFragment();
 
+
+    nextSymbols.forEach((symbol) => 
+    {
+      var icon = new ImageView(symbol); 
+      fragment.appendChild(icon.img)
+    });
+/*
     for (let i = 3; i < 3 + Math.floor(this.factor) * 10; i++) {
-      const icon = new Flag(
-        i >= 10 * Math.floor(this.factor) - 2
+      var index = i >= 10 * Math.floor(this.factor) - 2;
+      var comparison = i - Math.floor(this.factor) * 10;
+      console.log("index :"+index+" comparison: "+comparison);
+      if(index)
+      {
+        const icon = new ImageView(nextSymbols[comparison])
+        fragment.appendChild(icon.img);
+      }
+      /*
+      const icon = new ImageView(
+          i >= 10 * Math.floor(this.factor) - 2
           ? nextSymbols[i - Math.floor(this.factor) * 10]
           : undefined
       );
       fragment.appendChild(icon.img);
-    }
 
+    }
+      */
     this.symbolContainer.appendChild(fragment);
   }
 
