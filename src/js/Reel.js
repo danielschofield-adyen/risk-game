@@ -1,9 +1,11 @@
 import ImageView from "./ImageView";
+import GameController from "./GameController";
 
 export default class Reel {
-  constructor(reelContainer, idx, initialSymbols) {
+  constructor(reelContainer, idx, initialSymbols, gameController) {
     this.reelContainer = reelContainer;
     this.idx = idx;
+    this.gameController = gameController;
 
     this.symbolContainer = document.createElement("div");
     this.symbolContainer.classList.add("icons");
@@ -47,26 +49,18 @@ export default class Reel {
       var icon = new ImageView(symbol); 
       fragment.appendChild(icon.img)
     });
-/*
+
     for (let i = 3; i < 3 + Math.floor(this.factor) * 10; i++) {
-      var index = i >= 10 * Math.floor(this.factor) - 2;
-      var comparison = i - Math.floor(this.factor) * 10;
-      console.log("index :"+index+" comparison: "+comparison);
-      if(index)
-      {
-        const icon = new ImageView(nextSymbols[comparison])
-        fragment.appendChild(icon.img);
-      }
-      /*
-      const icon = new ImageView(
-          i >= 10 * Math.floor(this.factor) - 2
+      const icon = new ImageView(this.gameController.pools[0].pop());
+      /*(new ImageView(
+        i >= 10 * Math.floor(this.factor) - 2
           ? nextSymbols[i - Math.floor(this.factor) * 10]
           : undefined
-      );
+          */
+      
       fragment.appendChild(icon.img);
-
     }
-      */
+    
     this.symbolContainer.appendChild(fragment);
   }
 

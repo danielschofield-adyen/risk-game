@@ -15,7 +15,7 @@ export default class Slot {
 
     //get reels from DOM
     this.reels = Array.from(this.container.getElementsByClassName("reel")).map((reelContainer, idx) =>
-        new Reel(reelContainer, idx, this.currentSymbols[idx])
+        new Reel(reelContainer, idx, this.currentSymbols[idx],this.controller)
     );
 
     this.numOfReels = this.reels.length;
@@ -69,7 +69,7 @@ export default class Slot {
     this.controller.pools.forEach(pool =>
     { 
       var temp = [];
-      for(let i = 0; i < 100; i++)
+      for(let i = 0; i < 3; i++)
       {
         var item = pool.pop();
         temp.push(item);
