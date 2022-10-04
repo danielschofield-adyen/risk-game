@@ -3,82 +3,59 @@ import GameController from "./GameController.js";
 import ImageView from "./ImageView.js";
 import { getSupportInfo } from "prettier";
 
-export default class Slot {
-  constructor(domElement, config = {}) {
-
+export default class Slot 
+{
+  constructor(domElement, config = {}) 
+  {
+    //create gameController
     this.controller = new GameController();
+
     //initialise the container
     this.container = domElement;
 
-    this.currentSymbols = this.getSymbols();
-    this.nextSymbols = this.getSymbols();
-
     //get reels from DOM
     this.reels = Array.from(this.container.getElementsByClassName("reel")).map((reelContainer, idx) =>
-        new Reel(reelContainer, idx, this.currentSymbols[idx],this.controller)
+        new Reel(reelContainer, this.controller.pools[idx].getShuffled())
     );
 
-    this.numOfReels = this.reels.length;
-
+    //get and set spin button
     this.spinButton = document.getElementById("spin");
     this.spinButton.addEventListener("click", () => this.spin());
 
-    this.autoPlayCheckbox = document.getElementById("autoplay");
-
-    if (config.inverted) {
-      this.container.classList.add("inverted");
-    }
-
+    //set config
     this.config = config;
   }
 
-  spin() {
-    this.currentSymbols = this.nextSymbols;
-    this.nextSymbols = this.getSymbols();
-
-    this.onSpinStart(this.nextSymbols);
-
-    return Promise.all(
-      this.reels.map((reel) => {
-        reel.renderSymbols(this.nextSymbols[reel.idx]);
-        return reel.spin();
+  spin() 
+  {
+    var index = 0;
+    var timeout = 100;
+    this.reels.forEach(reel =>
+      {
+        reel.updateSymbols(this.controller.pools[index].getShuffled())
+        setTimeout(() => reel.spin(), timeout);
+        setTimeout(() => reel.stop(), timeout + 2000);
+        index++;
+        timeout = timeout + 300;
       })
-    ).then(() => this.onSpinEnd(this.nextSymbols));
+
+      setTimeout(() => this.onSpinEnd(this.controller.getResults()), 2000);   
   }
 
-  onSpinStart(symbols) {
-    this.spinButton.disabled = true;
+  stop()
+  {
+    this.reels.forEach(reel => reel.stop());
+  }
 
+  onSpinStart(symbols) 
+  {
+    this.spinButton.disabled = true;
     this.config.onSpinStart?.(symbols);
   }
 
-  onSpinEnd(symbols) {
-    this.spinButton.disabled = false;
-
-    this.config.onSpinEnd?.(symbols);
-
-    if (this.autoPlayCheckbox.checked) {
-      return window.setTimeout(() => this.spin(), 200);
-    }
-  }
-
-  getSymbols()
+  onSpinEnd(symbols) 
   {
-    var doubleArray = [];
-    var index = 0;
-    this.controller.pools.forEach(pool =>
-    { 
-      var temp = [];
-      for(let i = 0; i < 3; i++)
-      {
-        var item = pool.pop();
-        temp.push(item);
-      }
-      doubleArray[index] = temp;
-      console.log(doubleArray);
-      index++;
-    });
-
-    return doubleArray;
+    this.spinButton.disabled = false;
+    this.config.onSpinEnd?.(symbols);
   }
 }
