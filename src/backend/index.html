@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+
+<style>
+* {
+    margin: 0px;
+    box-sizing: content-box;
+}
+
+.popup {
+    position:absolute;
+    top: 50px;
+    left: 50px;
+    width: 90vw;
+    height: 90vh;
+    overflow-wrap: break-word;
+}
+
+.gameIframe {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.closeDiv {
+    position:relative;
+    top: 55px;
+    left: 55px;
+    z-index: 100;
+}
+
+.closeButton {
+    background-color:red;
+    color: white;
+    font-weight: bold;
+    font-size:45px;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+}
+
+.gameDiv {
+    visibility: show;
+}
+
+.playDiv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+</style>
+
+</head>
+<script>
+const closeGameResults = () => {
+    document.getElementById("gameDiv").style.visibility = "hidden";
+}
+
+const playGameDeclined = () => {
+    document.getElementById("gameDiv").style.visibility = "visible";
+    let transaction = {};
+    transaction.amount = 15000;
+    transaction.currency = "SEK";
+    transaction.shopperCountry = "SD";
+    transaction.deliveryCountry = "CU";
+    transaction.accountAge = 10;
+    document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
+}
+
+const playGameAuthorized = () => {
+    document.getElementById("gameDiv").style.visibility = "visible";
+    let transaction = {};
+    transaction.amount = 1000;
+    transaction.currency = "JPY";
+    transaction.shopperCountry = "JP";
+    transaction.deliveryCountry = "JP";
+    transaction.accountAge = 10;
+    document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
+}
+</script>
+
+<body>
+
+<div class="playDiv">
+    <button onClick="playGameDeclined()">PLAY Declined</button>
+    <button onClick="playGameAuthorized()">PLAY Authorized</button>
+</div>
+
+
+<div class="gameDiv" id="gameDiv">
+    <div class="closeDiv"><button onclick="closeGameResults()" class="closeButton">X</button></div>
+    <div class="popup">
+        <iframe title="Game iframe" class="gameIframe" id="gameIframe" src="results.php"></iframe>
+    </div>
+</div>
+
+</body>
+
+</html>
