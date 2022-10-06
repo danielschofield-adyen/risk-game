@@ -6,6 +6,7 @@
   "author": "Johannes Kronmüller <hello@johakr.me> (https://johakr.me/)",
   "repository": "johakr/html5-slot-machine",
   "scripts": {
+    "heroku-prebuild": "npm install --dev",
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
     "prepare": "husky install"
