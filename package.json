@@ -10,6 +10,9 @@
     "start": "webpack serve --mode development",
     "prepare": "husky install"
   },
+  "dependencies": {
+    "webpack": "^5.49.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
