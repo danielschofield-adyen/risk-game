@@ -3,12 +3,13 @@ export default class CurrencyDataModel
     data = [
       "dollar",
       "yuan",
-      "australia",
-      "bangladesh",
-      "canada",
-      "chile",
-      "china",
-      "christmas",
-      "colombia"
+      "dollar",
+      "yuan",      
+      "dollar",
+      "yuan",      
+      "dollar",
+      "yuan",      
+      "dollar",
+      "yuan"
       ];
 }

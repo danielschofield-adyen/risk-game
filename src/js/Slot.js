@@ -30,6 +30,7 @@ export default class Slot
   {
     var index = 0;
     var timeout = 100;
+    this.onSpinStart(this.controller.getResults());
     this.reels.forEach(reel =>
       {
         reel.updateSymbols(this.controller.pools[index].getShuffled())
