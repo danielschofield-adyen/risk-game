@@ -4,9 +4,13 @@
     <title></title>
 
 <style>
-* {
+body {
     margin: 0px;
+    padding: 0px;
     box-sizing: content-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #00112C;
+    color: white;
 }
 
 .popup {
@@ -22,10 +26,11 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    border: 1px solid white;
 }
 
 .closeDiv {
-    position:relative;
+    position:absolute;
     top: 55px;
     left: 55px;
     z-index: 100;
@@ -39,21 +44,82 @@
     width: 50px;
     height: 50px;
     padding: 0px;
+    border: 0px;
 }
 
 .gameDiv {
-    visibility: show;
+    visibility: hidden;
 }
 
-.playDiv {
+
+.main {
     position: absolute;
     top: 0px;
     left: 0px;
+    width: 100vw;
+    height: 100vh;
 }
+
+
+.start {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    font-size: 70px;
+    z-index: 1;
+}
+
+.tap {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    font-size: 60px;
+    visibility: hidden;
+    z-index: 2;
+}
+
+.welcome {
+    font-size: 20px;
+    visibility: hidden;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    background-color: white;
+    color: #00112C;
+    padding: 10px;
+}
+
+.terminalID {
+    position:absolute;
+    bottom:30px;
+    right:50px;
+}
+
+.terminalID > input {
+    background-color: #00112C;
+    color: black;
+    border: 1px solid black;
+}
+
+
 </style>
 
 </head>
+<script src="riskGame.js"></script>
 <script>
+let shopperReference = "";
+
 const closeGameResults = () => {
     document.getElementById("gameDiv").style.visibility = "hidden";
 }
@@ -66,6 +132,8 @@ const playGameDeclined = () => {
     transaction.shopperCountry = "SD";
     transaction.deliveryCountry = "CU";
     transaction.accountAge = 10;
+    transaction.shopperReference = shopperReference;
+    transaction.terminalID = document.getElementById('terminalID').value;
     document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
 }
 
@@ -77,23 +145,56 @@ const playGameAuthorized = () => {
     transaction.shopperCountry = "JP";
     transaction.deliveryCountry = "JP";
     transaction.accountAge = 10;
+    transaction.shopperReference = shopperReference;
+    transaction.terminalID = document.getElementById('terminalID').value;
     document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
+}
+
+const start = async () => {
+
+    // Hide title
+    document.getElementById('start').style.visibility = 'hidden';
+    // Shot tap your card
+    document.getElementById('tap').style.visibility = "visible";
+    // Call card acquisition
+    shopperReference = await cardAcquisiton();
+    // Hide tap your card
+    document.getElementById('tap').style.visibility = "hidden";
+    // Show welcome message
+    document.getElementById('shopperName').innerHTML = "Welcome " + shopperReference;
+    document.getElementById('welcome').style.visibility = "visible";
+}
+
+const exit = () => {
+    location.reload();
 }
 </script>
 
 <body>
 
-<div class="playDiv">
+<div class="main">
+
+<div class="start" id="start"><div onclick="start()">TOUCH TO START THE GAME</div>
+<div class="terminalID"><input id="terminalID" value="347148879"/></div></div>
+
+<div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
+
+<div class="welcome" id="welcome">
+
+    <div id="shopperName"></div>
     <button onClick="playGameDeclined()">PLAY Declined</button>
     <button onClick="playGameAuthorized()">PLAY Authorized</button>
+    <button onClick="exit()">Logout</button>
+    
 </div>
-
 
 <div class="gameDiv" id="gameDiv">
     <div class="closeDiv"><button onclick="closeGameResults()" class="closeButton">X</button></div>
     <div class="popup">
         <iframe title="Game iframe" class="gameIframe" id="gameIframe" src="results.php"></iframe>
     </div>
+</div>
+
 </div>
 
 </body>

@@ -22,6 +22,8 @@ async function play() {
       "shopperCountry":transaction.shopperCountry, 
       "deliveryCountry":transaction.deliveryCountry, 
       "accountAge":transaction.accountAge,
+      "shopperReference":transaction.shopperReference,
+      "terminalID":transaction.terminalID,
     };
     
     console.log("Call the /Payments API with following data => " , data);
@@ -94,4 +96,40 @@ const displayResult = (data) => {
         document.getElementById(item.name).innerHTML = "Rule triggered with score = " + item.accountScore;
         document.getElementById(item.name).style.color = "red";
     }
+}
+
+async function cardAcquisiton() {
+
+    let url = "cardAcquisition.php";
+    let data = {
+      "terminalID":"V400m-347148879"
+    };
+    
+    console.log("Call the TAPI for CardAcqusition with following data => " , data);
+    let res = await callServer(url, data);
+  
+    console.log("Result is > ", res);
+    console.log("Result is > ", res.SaleToPOIResponse.CardAcquisitionResponse.Response.AdditionalResponse);
+    let valuesList = res.SaleToPOIResponse.CardAcquisitionResponse.Response.AdditionalResponse.split("&");
+    let propertiesObj = {}
+    for (let itm of valuesList) {
+        let values = itm.split("="); 
+        let prop = values[0]; 
+        let val = values[1]; 
+        propertiesObj[prop] = val;
+    }
+    let shopperReference = propertiesObj.shopperReference;
+    console.log("shopperReference is > ", shopperReference);
+
+    url = "cardAcquisitionRelease.php";
+    data = {
+      "shopperReference":shopperReference
+    };
+    
+    console.log("Call the TAPI for CardAcqusitionRelease with following data => " , data);
+    res = await callServer(url, data);
+
+    console.log("Result of release > ", res)
+
+    return shopperReference;
 }

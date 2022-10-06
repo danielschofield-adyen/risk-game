@@ -1,4 +1,6 @@
 <?php
+include_once("config.php");
+
 $rawData = json_decode(file_get_contents('php://input'), true);
 
 $url = "https://checkout-test.adyen.com/v69/payments";
@@ -9,7 +11,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $headers = array(
    "content-type: application/json",
-   "x-API-key: AQEwhmfxK4nNbRNGw0m/n3Q5qf3VaY9UCJ1raER1426ukHJi7jetq/xYDSgnqD1MdQUVEMFdWw2+5HzctViMSCJMYAc=-r3H72X9gDji+6zHqR/OTvjX0/OZ9YYNPdX2QySbNyUI=-yR:A;P_Y^eKfBf5e",
+   "x-API-key: ".$config["APIKey_AdyenAPACEvent_SG_RiskGame"],
 );
 
 switch($rawData['shopperCountry']) {
@@ -39,7 +41,7 @@ $accountCreationDate = date("Y-m-d\TH:i:s+09:00", strtotime("-".$rawData['accoun
 $data = array(
    "reference"=>"RiskGameTest",
    "merchantAccount"=>"AdyenAPACEvent_SG_RiskGame_TEST", 
-   "shopperReference"=> "Shopper_Reference_0001",
+   "shopperReference"=> $rawData['shopperReference'],
    "amount"=>array("value"=>$rawData['amount'],"currency"=>$rawData['currency']),
    "paymentMethod"=>$paymentMethod,
    "deliveryAddress"=>array("city"=>"xxx","country"=>$rawData['deliveryCountry'], "houseNumberOrName"=>"xxx","postalCode"=>"xxx","street"=>"xxx"),
