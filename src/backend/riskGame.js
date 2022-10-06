@@ -22,8 +22,7 @@ async function play() {
       "shopperCountry":transaction.shopperCountry, 
       "deliveryCountry":transaction.deliveryCountry, 
       "accountAge":transaction.accountAge,
-      "shopperReference":transaction.shopperReference,
-      "terminalID":transaction.terminalID,
+      "shopperReference":transaction.shopperReference
     };
     
     console.log("Call the /Payments API with following data => " , data);
@@ -43,8 +42,13 @@ async function callServer(url, data) {
         }
     })
   
-    data = await res.json();
-    return data;
+    try {
+        data = await res.json();
+        return data;
+    }
+    catch(err) {
+        return null;
+    }
 }
 
 const cleanUp = () => {
@@ -68,6 +72,10 @@ const displayResult = (data) => {
     // Handle API returns error
     if (data.status === 500) {
         alert("Transaction cannot be processed");
+        return
+    }
+    if (data.status === 401) {
+        alert("Not authorized");
         return
     }
 
@@ -98,16 +106,20 @@ const displayResult = (data) => {
     }
 }
 
-async function cardAcquisiton() {
+async function cardAcquisiton(terminalID) {
 
     let url = "cardAcquisition.php";
     let data = {
-      "terminalID":"V400m-347148879"
+      "terminalID":terminalID
     };
     
     console.log("Call the TAPI for CardAcqusition with following data => " , data);
     let res = await callServer(url, data);
   
+    if (!res) {
+        return "Guest";
+    }
+
     console.log("Result is > ", res);
     console.log("Result is > ", res.SaleToPOIResponse.CardAcquisitionResponse.Response.AdditionalResponse);
     let valuesList = res.SaleToPOIResponse.CardAcquisitionResponse.Response.AdditionalResponse.split("&");
@@ -123,7 +135,8 @@ async function cardAcquisiton() {
 
     url = "cardAcquisitionRelease.php";
     data = {
-      "shopperReference":shopperReference
+      "shopperReference":shopperReference,
+      "terminalID":terminalID
     };
     
     console.log("Call the TAPI for CardAcqusitionRelease with following data => " , data);

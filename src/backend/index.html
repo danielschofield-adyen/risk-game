@@ -102,13 +102,13 @@ body {
 
 .terminalID {
     position:absolute;
-    bottom:30px;
-    right:50px;
+    bottom:10px;
+    right:20px;
 }
 
 .terminalID > input {
     background-color: #00112C;
-    color: black;
+    color: #33445C;
     border: 1px solid black;
 }
 
@@ -133,7 +133,6 @@ const playGameDeclined = () => {
     transaction.deliveryCountry = "CU";
     transaction.accountAge = 10;
     transaction.shopperReference = shopperReference;
-    transaction.terminalID = document.getElementById('terminalID').value;
     document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
 }
 
@@ -146,7 +145,6 @@ const playGameAuthorized = () => {
     transaction.deliveryCountry = "JP";
     transaction.accountAge = 10;
     transaction.shopperReference = shopperReference;
-    transaction.terminalID = document.getElementById('terminalID').value;
     document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
 }
 
@@ -157,7 +155,8 @@ const start = async () => {
     // Shot tap your card
     document.getElementById('tap').style.visibility = "visible";
     // Call card acquisition
-    shopperReference = await cardAcquisiton();
+    let terminalID = document.getElementById('terminalID').value;
+    shopperReference = await cardAcquisiton(terminalID);
     // Hide tap your card
     document.getElementById('tap').style.visibility = "hidden";
     // Show welcome message
@@ -175,7 +174,7 @@ const exit = () => {
 <div class="main">
 
 <div class="start" id="start"><div onclick="start()">TOUCH TO START THE GAME</div>
-<div class="terminalID"><input id="terminalID" value="347148879"/></div></div>
+<div class="terminalID"><input id="terminalID" value="V400m-347148879"/></div></div>
 
 <div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
 

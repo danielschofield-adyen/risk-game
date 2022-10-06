@@ -1,5 +1,4 @@
 <?php
-include_once("config.php");
 
 $rawData = json_decode(file_get_contents('php://input'), true);
 
@@ -11,7 +10,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $headers = array(
    "content-type: application/json",
-   "x-API-key: ".$config["APIKey_AdyenAPACEvent_SG_RiskGame"],
+   "x-API-key: ".$_ENV["APIKey_AdyenAPACEvent_SG_RiskGame"],
 );
 
 switch($rawData['shopperCountry']) {

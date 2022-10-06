@@ -1,5 +1,4 @@
 <?php
-include_once("config.php");
 
 $rawData = json_decode(file_get_contents('php://input'), true);
 
@@ -11,7 +10,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $headers = array(
    "content-type: application/json",
-   "x-API-key: ".$config["APIKey_RiskGame_Terminals"],
+   "x-API-key: ".$_ENV["APIKey_RiskGame_Terminals"],
 );
 
 $timestamp = date("Y-m-d\TH:i:s+09:00");
@@ -26,7 +25,7 @@ $data = array(
                 "MessageType"=>"Request",
                 "SaleID"=>"Joffrey_POSTEST_0001",
                 "ServiceID"=>$seq,
-                "POIID"=>"V400m-347148879"
+                "POIID"=>$rawData['terminalID'],
             ),
             "CardAcquisitionRequest"=> array(
                 "SaleData"=> array(

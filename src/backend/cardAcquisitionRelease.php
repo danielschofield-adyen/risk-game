@@ -1,5 +1,4 @@
 <?php
-include_once("config.php");
 
 $rawData = json_decode(file_get_contents('php://input'), true);
 
@@ -11,7 +10,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $headers = array(
    "content-type: application/json",
-   "x-API-key: ".$config["APIKey_RiskGame_Terminals"],
+   "x-API-key: ".$_ENV["APIKey_RiskGame_Terminals"],
 );
 
 $seq = strval(rand(1, 999999999));
@@ -25,7 +24,7 @@ $data = array(
               "MessageType"=>"Request",
               "ServiceID"=>$seq,
               "SaleID"=>"POSSystemID12354",
-              "POIID"=>"V400m-347148879"
+              "POIID"=>$rawData['terminalID']
            ),
            "EnableServiceRequest"=>array(
               "TransactionAction"=>"AbortTransaction",
