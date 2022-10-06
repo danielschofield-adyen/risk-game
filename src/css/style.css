@@ -2,7 +2,7 @@ body {
   width: 100vw;
   height: 100vh;
   padding: 1rem;
-  background-color: rgb(103, 171, 177);
+  background-color: #00112c;
   background-size: cover;
   display: flex;
   align-items: center;

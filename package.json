@@ -6,7 +6,7 @@
   "author": "Daniel Schofield",
   "repository": "danielschofield-adyen/risk-game",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack serve --mode development",
     "start": "webpack serve --mode development",
     "prepare": "husky install"
   },
