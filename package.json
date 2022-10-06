@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Daniel Schofield",
   "repository": "danielschofield-adyen/risk-game",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "webpack serve --mode development",
     "start": "node server.js",

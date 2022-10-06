@@ -17,6 +17,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      filename: "./src/index.html"
     }),
     new MiniCssExtractPlugin({
       filename: "main.[contenthash].css",
