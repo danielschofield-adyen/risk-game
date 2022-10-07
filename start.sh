@@ -1,3 +1,0 @@
-export APIKey_AdyenAPACEvent_SG_RiskGame="AQEwhmfxK4nNbRNGw0m/n3Q5qf3VaY9UCJ1raER1426ukHJi7jetq/xYDSgnqD1MdQUVEMFdWw2+5HzctViMSCJMYAc=-r3H72X9gDji+6zHqR/OTvjX0/OZ9YYNPdX2QySbNyUI=-yR:A;P_Y^eKfBf5e"
-export APIKey_RiskGame_Terminals="AQEyhmfxKYzMaBRCw0m/n3Q5qf3VeIpUAJZETHZ7x3yuu2dYh16iOiJdOWzehw0a2eKFZiQQwV1bDb7kfNy1WIxIIkxgBw==-rpjk4G/3E15GxYLslcU4dJ9K/QC9XkZ+cHQ3LQaWuvU=-&6n7kmY6v;t53PF;"
-php -S localhost:8000
