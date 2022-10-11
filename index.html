@@ -36,6 +36,21 @@ const playGameAuthorized = () => {
     document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
 }
 
+const startDev = async() =>
+{
+  // Hide title
+  document.getElementById('start').style.visibility = 'hidden';
+  // Shot tap your card
+  document.getElementById('tap').style.visibility = "hidden";
+  // Call card acquisition
+  //let terminalID = document.getElementById('terminalID').value;
+  //shopperReference = await cardAcquisiton(terminalID);
+  // Hide tap your card
+  document.getElementById('tap').style.visibility = "hidden";
+
+  document.getElementById('gameMain').style.visibility = "visible";
+}
+
 const start = async () => {
 
     // Hide title
@@ -73,7 +88,7 @@ const initTerminalId = () => {
 
 <div class="main">
 
-<div class="start" id="start"><div onclick="start()">TOUCH TO START THE GAME</div>
+<div class="start" id="start"><div onclick="startDev()">TOUCH TO START THE GAME</div>
 <div class="terminalID"><input id="terminalID" value="V400m-347148879"/><button class="terminalIDButton" onclick="assignTerminalId()">assign</button></div></div>
 
 <div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
