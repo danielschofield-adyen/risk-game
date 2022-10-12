@@ -43,8 +43,8 @@ const startDev = async() =>
   // Shot tap your card
   document.getElementById('tap').style.visibility = "hidden";
   // Call card acquisition
-  //let terminalID = document.getElementById('terminalID').value;
-  //shopperReference = await cardAcquisiton(terminalID);
+  let terminalID = document.getElementById('terminalID').value;
+  shopperReference = await cardAcquisiton(terminalID);
   // Hide tap your card
   document.getElementById('tap').style.visibility = "hidden";
 
