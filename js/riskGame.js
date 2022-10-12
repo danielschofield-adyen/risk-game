@@ -132,6 +132,10 @@ async function cardAcquisiton(terminalID) {
     }
     let shopperReference = propertiesObj.shopperReference;
     console.log("shopperReference is > ", shopperReference);
+    
+    if (!shopperReference) {
+        shopperReference = "Guest";
+    }
 
     url = "../backend/cardAcquisitionRelease.php";
     data = {
