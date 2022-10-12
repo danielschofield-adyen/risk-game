@@ -41,13 +41,14 @@ const startDev = async() =>
   // Hide title
   document.getElementById('start').style.visibility = 'hidden';
   // Shot tap your card
-  document.getElementById('tap').style.visibility = "hidden";
+  document.getElementById('tap').style.visibility = "visible";
   // Call card acquisition
   let terminalID = document.getElementById('terminalID').value;
   shopperReference = await cardAcquisiton(terminalID);
   // Hide tap your card
   document.getElementById('tap').style.visibility = "hidden";
-
+  // Show welcome message
+  document.getElementById('shopperName').innerHTML = "Welcome " + shopperReference;
   document.getElementById('gameMain').style.visibility = "visible";
 }
 
