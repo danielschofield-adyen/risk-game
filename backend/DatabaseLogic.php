@@ -26,7 +26,7 @@ if(!$db) {
     result_code VARCHAR(70) NOT NULL
   )";
       
-  $result = pg_connect($conn,$sql);
+  $result = pg_query($conn,$sql);
 }
 
 
