@@ -62,5 +62,7 @@ $resp = curl_exec($curl);
 curl_close($curl);
 
 header("Content-Type: application/json");
+
 print($resp);
+
 ?>

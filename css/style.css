@@ -35,9 +35,6 @@ body {
   width: 100%;
   height: calc((3 / 5) * 100vw);
   max-height: calc(95vh - 70px - 40px);
-  border-radius: 25px;
-  border:black solid 0px;
-  background:#0ABF53;
   margin: 10px;
 }
 
@@ -45,16 +42,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url("../assets/slotmachine.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .reel {
   overflow: hidden;
   width: 20%;
-  background: white;
-  border-radius: 25px;
-  border: black solid 1px;
   margin: 5px;
-
 }
 
 .reel > .icons > img {
@@ -113,10 +109,46 @@ input[type="checkbox"] {
   transform: scaleY(-1);
 }
 
-.icons > img
+.icons > div
 {
   padding:30px;
-  position:relative;
+}
+
+.icons > div > img
+{
+  height: 100%;
+  width: 100%;
+  line-height: 200px;
+  text-align: center;
+  font-size: 4em;
+  /*padding:30px;*/
+  /*position:relative;*/
+}
+
+.animateSymbol
+{
+  box-shadow: 0px 0px 20px 10px #48abe0;
+  animation: shadows 1.5s infinite;
+  border-radius: 30px;
+}
+
+@keyframes shadows {
+  0% {
+    text-shadow: #48abe0 0 0 10px;
+    box-shadow: 0px 0px 20px 10px #48abe0;
+  }
+  50% {
+    text-shadow: blueviolet 0 0 10px;
+    box-shadow: 0px 0px 20px 10px blueviolet;
+  }
+  75% {
+    text-shadow: rebeccapurple 0 0 10px;
+    box-shadow: 0px 0px 20px 10px rebeccapuprle;
+  }
+  100% {
+    text-shadow: #48abe0 0 0 10px;
+    box-shadow: 0px 0px 20px 10px #48abe0;
+  }
 }
 
 .child
@@ -241,6 +273,11 @@ input[type="checkbox"] {
       display: flex;
       flex-direction: column;
       visibility: hidden;
+      width: 75%;
+      height:800px;
+      margin-left:auto;
+      margin-right:auto;
+      top: 10%;
   }
   
   .welcome {

@@ -1,9 +1,9 @@
 let transaction = {}
 
 const amountList = [500, 1000, 5000, 8000, 10000, 15000, 50000, 150000];
-const currencyList = ["JPY", "SGD", "IDR", "MYR", "CNY", "TWD", "KRW", "PHP", "SEK"];
-const shopperCountryList = ["JP", "SG", "HK", "ID", "MY", "CN", "TW", "YE", "SD"];
-const deliveryCountryList = ["JP", "SG", "HK", "ID", "MY", "CN", "TW", "KR", "CM", "CU"];
+const currencyList = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "YEN"];
+const shopperCountryList = ["AU", "CN", "HK", "JP", "SG", "KR", "TW"];
+const deliveryCountryList = ["AU", "CN", "HK", "JP", "SG", "KR", "TW"];
 const accountAgeList = [10, 100, 240, 8760, 43800];
 
 const resultRulesList = ["CustomFieldCheck-AmountCheck","CustomFieldCheck-CurrencyCheck","CustomFieldCheck-ShopperCountryCodeCheck","CustomFieldCheck-DeliveryCountryCheck","CustomFieldCheck-AccountAgeLessThanAWeek"]
@@ -16,6 +16,7 @@ async function play() {
 
     cleanUp();
     const url = "getAuthorization.php";
+    const dbUrl = "insertToDatabase.php";
     const data = {
       "amount":transaction.amount,
       "currency":transaction.currency,
@@ -27,7 +28,14 @@ async function play() {
     
     console.log("Call the /Payments API with following data => " , data);
     let res = await callServer(url, data);
-  
+    const dbData =
+    {
+        "pspReference":res.pspReference,
+        "shopperReference":res.merchantReference,
+        "fraudScore":res.fraudResult.accountScore,
+        "resultCode":res.resultCode
+    }
+    let dbRes = await insertToDatabase(dbUrl,dbData);
     console.log("Result is > ", res);
     displayResult(res);
 };
@@ -42,6 +50,26 @@ async function callServer(url, data) {
         }
     })
   
+    try {
+        data = await res.json();
+        return data;
+    }
+    catch(err) {
+        return null;
+    }
+}
+
+async function insertToDatabase(url, data) {
+  
+    console.log(data);
+
+    const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
     try {
         data = await res.json();
         return data;

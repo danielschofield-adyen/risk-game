@@ -52,13 +52,23 @@ class Slot
     this.reels.forEach(reel =>
       {
         reel.updateSymbols(this.controller.pools[index].getShuffled())
+        reel.resetWinningLines();
         setTimeout(() => reel.spin(), timeout);
         setTimeout(() => reel.stop(), timeout + 1000);
         index++;
         timeout = timeout + 300;
       })
 
-      setTimeout(() => this.onSpinEnd(this.controller.getResults()), 1000);
+      setTimeout(() => 
+      {
+        this.onSpinEnd(this.controller.getResults())
+        this.reels.forEach(reel =>
+          {
+            reel.showWinningLines();
+          })
+
+      }, 2500);
+
   }
 
   stop()
@@ -104,32 +114,68 @@ class Reel
     this.symbolContainer.classList.add("icons");
     this.reelContainer.appendChild(this.symbolContainer);
 
+
     this.currentSymbols.forEach(symbol =>
       {
+        const newDiv = document.createElement("div");
         var img = new Image();
-        img.src = `../assets/symbols/${symbol}.png`;
-        this.symbolContainer.appendChild(img);
+        img.src = `../assets/symbols/${symbol}.svg`;
+        newDiv.appendChild(img);
+        this.symbolContainer.appendChild(newDiv);
       })
+
+      this.currentSymbols.forEach(symbol =>
+        {
+          const newDiv = document.createElement("div");
+          var img = new Image();
+          img.src = `../assets/symbols/${symbol}.svg`;
+          newDiv.appendChild(img);
+          this.symbolContainer.appendChild(newDiv);
+        })
   }
 
   spin() 
   {
     //Add class to start css animation
-    var children = this.symbolContainer.querySelectorAll("img");
-    children.forEach(child => child.setAttribute("class", "ringMoving"));
+    this.setChildrenAttribute("class", "ringMoving", "div");
     
+    var images = this.symbolContainer.querySelectorAll("img");
     var iteration = 0;
     this.currentSymbols.forEach(symbol =>
     {
-      children[iteration].src = `../assets/symbols/${symbol}.png`;
+      images[iteration].src = `../assets/symbols/${symbol}.svg`;
       iteration++;
     });
   }
 
   stop()
   {
-    var children = this.symbolContainer.querySelectorAll("img");
-    children.forEach(child => child.setAttribute("class", "ringEnd"));
+    this.setChildrenAttribute("class", "ringStop", "div");
+  }
+
+  showWinningLines()
+  {
+    var children = this.getChildren("img");
+    if(children.length >= 3)
+      children[2].setAttribute("class", "animateSymbol");
+  }
+
+  resetWinningLines()
+  {
+    var children = this.getChildren("img");
+    if(children.length >= 3)
+      children[2].setAttribute("class", "");
+  }
+
+  getChildren(elementType)
+  {
+    return this.symbolContainer.querySelectorAll(elementType);
+  }
+
+  setChildrenAttribute(attributeToSet, attribute, elementType)
+  {
+    var children = this.getChildren(elementType);
+    children.forEach(child => child.setAttribute(attributeToSet, attribute));
   }
 }
 
@@ -197,7 +243,7 @@ class ImageView
     constructor(name)
     {
         this.img = new Image();
-        this.img.src = require(`../assets/symbols/${name}.png`);
+        this.img.src = require(`../assets/symbols/${name}.svg`);
     }
 }
 
@@ -247,58 +293,37 @@ class GameController
 
 class FlagDataModel
 {
-    data = [
-      "KM",
-      "US",
-      "AU",
-      "BD",
-      "CA",
-      "CL",
-      "CN",
-      "CO"
-      ];
+    data = ["AU", "CN", "HK", "JP", "SG", "KR", "TW"];
 }
 
 class CurrencyDataModel
 {
-    data = [
-      "USD",
-      "CNY",
-      "USD",
-      "CNY",      
-      "USD",
-      "CNY",      
-      "USD",
-      "CNY",      
-      "USD",
-      "CNY"
-      ];
+    data = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "YEN"];
 }
 
 class AmountDataModel
 {
     data = [
       "1000",
-      "2500",
       "5000",
-      "7500",
       "10000",
-      "12500",
       "15000",
-      "17500",
-      "20000"
+      "20000",
+      "50000",
+      "100000"
       ];
 }
 
 class AccountAgeDataModel
 {
     data = [
-      "2",
-      "4",
-      "12",
+      "1",
+      "3",
       "24",
       "72",
-      "168"
+      "168",
+      "720",
+      "2160"
       ];
 }
 
