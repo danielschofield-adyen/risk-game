@@ -3,10 +3,6 @@ const config = {
     
     onSpinStart: (symbols) => {
       console.log("onSpinStart", symbols);
-    },
-    
-    onSpinEnd: (symbols) => {
-      console.log("onSpinEnd", symbols);
       let transaction = {};
       transaction.amount = symbols.amount;
       transaction.currency = symbols.currency;
@@ -15,6 +11,11 @@ const config = {
       transaction.accountAge = symbols.accountAge;;
       transaction.shopperReference = shopperReference;
       document.getElementById('gameIframe').contentWindow.postMessage(JSON.stringify(transaction));
+    },
+    
+    onSpinEnd: (symbols) => {
+      console.log("onSpinEnd", symbols);
+
       setTimeout(() => {
         document.getElementById("gameDiv").style.visibility = "visible"
       }, 2000)
@@ -37,8 +38,8 @@ class Slot
     );
 
     //get and set spin button
-    this.spinButton = document.getElementById("spin");
-    this.spinButton.addEventListener("click", () => this.spin());
+    this.spinButton = document.getElementById("handle");
+    if(this.spinButton) this.spinButton.addEventListener("click", () => this.spin());
 
     //set config
     this.config = config;
@@ -46,6 +47,9 @@ class Slot
 
   spin() 
   {
+    this.spinButton.style.backgroundImage = "url(../assets/handle2.svg)";
+    setTimeout(() => this.spinButton.style.backgroundImage = "url(../assets/handle1.svg)",300);
+    
     var index = 0;
     var timeout = 100;
     this.onSpinStart(this.controller.getResults());
@@ -78,13 +82,13 @@ class Slot
 
   onSpinStart(symbols) 
   {
-    this.spinButton.disabled = true;
+    if(this.spinButton) this.spinButton.disabled = true;
     this.config.onSpinStart?.(symbols);
   }
 
   onSpinEnd(symbols) 
   {
-    this.spinButton.disabled = false;
+    if(this.spinButton) this.spinButton.disabled = false;
     this.config.onSpinEnd?.(symbols);
   }
 }
@@ -272,23 +276,25 @@ class GameController
         var accountAgeDataModel = new AccountAgeDataModel();
         var accountAgeDataModelPool = new Pool(accountAgeDataModel.data);
 
+        this.pools.push(amountModelPool);    
+        this.pools.push(currencyDataModelPool);   
         this.pools.push(shopperCountryPool);        
-        this.pools.push(amountModelPool);       
-        this.pools.push(deliveryCountryPool);        
-        this.pools.push(currencyDataModelPool);        
+        this.pools.push(deliveryCountryPool);   
         this.pools.push(accountAgeDataModelPool);
     }
 
     getResults()
     {
         let results = [];
-        results['shopperCountry'] = this.pools[0].data[1];
-        results['amount'] = this.pools[1].data[1];
-        results['deliveryCountry'] = this.pools[2].data[1];
-        results['currency'] = this.pools[3].data[1];
-        results['accountAge'] = this.pools[4].data[1];
+        results['amount'] = this.pools[0].data[2];
+        results['currency'] = this.pools[1].data[2];
+        results['shopperCountry'] = this.pools[2].data[2];
+        results['deliveryCountry'] = this.pools[3].data[2];
+        results['accountAge'] = this.pools[4].data[2];
         return results;
     }
+
+
 }
 
 class FlagDataModel

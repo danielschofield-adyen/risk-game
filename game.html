@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <title>Risk Game</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
 </head>
 <script src="js/riskGame.js"></script>
-
+<script src="../js/all.js"></script>
 <script>
 let shopperReference = "";
 
@@ -39,10 +39,6 @@ const playGameAuthorized = () => {
 
 const startDev = async() =>
 {
-  let tap = document.getElementById('tap');
-  let shopperName = document.getElementById('shopperName');
-  let gameMain = document.getElementById('gameMain');
-
   // Hide title
   document.getElementById('start').style.visibility = 'hidden';
   // Shot tap your card
@@ -51,15 +47,10 @@ const startDev = async() =>
   let terminalID = document.getElementById('terminalID').value;
   shopperReference = await cardAcquisiton(terminalID);
   // Hide tap your card
-  //document.getElementById('tap').style.visibility = "hidden";
+  document.getElementById('tap').style.visibility = "hidden";
   // Show welcome message
-
-
-  if(tap) tap.style.visibility = "hidden";
-  if(shopperName) shopperName.innerHTML  = "Welcome " + shopperReference;
-  if(gameMain) gameMain.style.visibility = "visible";
-  /*document.getElementById('shopperName').innerHTML = "Welcome " + shopperReference;
-  document.getElementById('gameMain').style.visibility = "visible";*/
+  document.getElementById('shopperName').innerHTML = "Welcome " + shopperReference;
+  document.getElementById('gameMain').style.visibility = "visible";
 }
 
 const start = async () => {
@@ -92,16 +83,6 @@ const initTerminalId = () => {
         document.getElementById('terminalID').value = terminalID;
     }
 }
-
-const pullHandle = () =>
-{
-  console.log("Pulling handle");
-  let handle = document.getElementById('handle');
-  console.log("Handle: "+handle);
-
- //if(handle) handle = "assets/risk game apac handle2.svg";
-}
-
 </script>
 
 <body onload="initTerminalId()">
@@ -121,16 +102,9 @@ const pullHandle = () =>
 
 <div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
 
-<div id="parentContainer">
-  <div class="gameMain" id="gameMain">
-    <div id="slot">
-      <div id="headingsContent">
-        <div class="heading"><text style="padding-left:60px">Amount</text></div>
-        <div class="heading"><text style="padding-left:60px">Currency</text></div>
-        <div class="heading"><text style="padding-left:10px">Shopper location</text></div>
-        <div class="heading"><text style="padding-left:10px">Delivery location</text></div>
-        <div class="heading"><text style="padding-left:30px">Account age</text></div>
-      </div>
+<div class="gameMain" id="gameMain">
+  <div id="slot">
+    <div id="spinGame">
       <div id="reels">
         <div class="reel"></div>
         <div class="reel"></div>
@@ -138,34 +112,9 @@ const pullHandle = () =>
         <div class="reel"></div>
         <div class="reel"></div>
       </div>
-
-      <!-- TODO: animate lights at the bottom of the screen as well
-      <div id="bottomLights">
-        <div class="light animateSymbol"></div>
-        <div class="light animateSymbol"></div>
-        <div class="light animateSymbol"></div>
-        <div class="light animateSymbol"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-        <div class="light"></div>
-      </div>-->
     </div>
-
-    <button id="handle"></button>
-    <!--<button type="submit" style="border: 0; background: transparent" value="pullHandle()">
-      <img id="handle" src="assets/risk game apac handle1.svg"  />
-    </button>-->
   </div>
-</div>
-
-<script src="../js/all.js"></script>
+</div>    
 
 <div class="gameDiv" id="gameDiv">
     <div class="closeDiv"><button onclick="closeGameResults()" class="closeButton">X</button></div>

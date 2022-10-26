@@ -13,44 +13,115 @@ body {
 
 @media only screen and (max-width: 1200px) {
   body {
-    background-color: rgb(103, 171, 177);
+    /*background-color: rgb(103, 171, 177);*/
+
   }
 }
 
-#headingsContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/*------- Slot machine style ---------*/
+
+#parentContainer
+{
+  width:1649px;
+  height: 1062px;
+  margin:auto;
 }
 
-#headings {
+#gameMain
+{
+  visibility: hidden;
+  width:1649px;
+  height:1062px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#headingsContent {
+  width: 1103.25px;
+  height: 50px;
+  margin:auto;
+  margin-top:181px;
   display: flex;
-  align-items: center;
-  justify-content:space-between;
-  width: 90%;
+ /* align-items: center;
+  justify-content: center;*/
+}
+
+.heading
+{
+  overflow: hidden;
+  width: 20%;
+  margin: 5px;
+  float:left;
+}
+
+#slot
+{
+  width:1448.25px;
+  height:1061.25px;
+  background-image: url("../assets/risk game apac background v2-svg.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  float:left;
 }
 
 #reels {
+  /*display: flex;
+  padding-left: 12%;
+  padding-right: 12%;
+  padding-top:22%;
+  height:530px;*/
+  width: 1103.25px;
+  height: 723.25px;
   display: flex;
-  width: 100%;
-  height: calc((3 / 5) * 100vw);
-  max-height: calc(95vh - 70px - 40px);
-  margin: 10px;
+  justify-content: center;
+  margin:auto;
+  margin-top:-8px;
 }
 
 #spinGame {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../assets/slotmachine.svg");
+  background-image: url("../assets/riskGame_bg_cropped.svg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#handle
+{
+  all: unset;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  width:200px;
+  height:400px;
+  margin-top:11%;
+  float:left;
+  background-image: url("../assets/handle1.svg");
+  background-repeat: no-repeat;
+}
+
+#handle:focus {
+  outline: none;
+  box-shadow: none;
+  
+}
+
+#handle:active {
+  outline: none;
+  box-shadow: none;
+  
 }
 
 .reel {
   overflow: hidden;
   width: 20%;
   margin: 5px;
+  float:left;
 }
 
 .reel > .icons > img {
@@ -61,6 +132,29 @@ body {
   /* enable gpu accelaration, fixes iOS flicker */
   transform: translate3d(0, 0, 0);
 }
+
+#bottomLights
+{
+  width: 1215.25px;
+  height: 50px;
+  margin:auto;
+  margin-top:69px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.light
+{
+  overflow: hidden;
+  width: 30px;
+  margin: 5px;
+  float:left;
+  border:3px solid black;
+  border-radius: 30px;
+  background-color: #0ABF53;
+}
+
+/* ----------------------------------------- */
 
 #controls {
   background-color: white;
@@ -101,17 +195,9 @@ input[type="checkbox"] {
   text-align: center;
 }
 
-#slot.inverted .reel {
-  transform: scaleY(-1);
-}
-
-#slot.inverted .reel > .icons > img {
-  transform: scaleY(-1);
-}
-
 .icons > div
 {
-  padding:30px;
+  padding:5%;
 }
 
 .icons > div > img
@@ -127,27 +213,27 @@ input[type="checkbox"] {
 
 .animateSymbol
 {
-  box-shadow: 0px 0px 20px 10px #48abe0;
+  box-shadow: 0px 0px 0px 0px #48abe0;
   animation: shadows 1.5s infinite;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 @keyframes shadows {
   0% {
-    text-shadow: #48abe0 0 0 10px;
-    box-shadow: 0px 0px 20px 10px #48abe0;
+    text-shadow: #48abe0 0 0 5px;
+    box-shadow: 0px 0px 5px 5px #48abe0;
   }
   50% {
-    text-shadow: blueviolet 0 0 10px;
-    box-shadow: 0px 0px 20px 10px blueviolet;
+    text-shadow: blueviolet 0 0 5px;
+    box-shadow: 0px 0px 5px 5px blueviolet;
   }
   75% {
-    text-shadow: rebeccapurple 0 0 10px;
-    box-shadow: 0px 0px 20px 10px rebeccapuprle;
+    text-shadow: rebeccapurple 0 0 5px;
+    box-shadow: 0px 0px 5px 5px rebeccapuprle;
   }
   100% {
-    text-shadow: #48abe0 0 0 10px;
-    box-shadow: 0px 0px 20px 10px #48abe0;
+    text-shadow: #48abe0 0 0 5px;
+    box-shadow: 0px 0px 5px 5px #48abe0;
   }
 }
 
@@ -157,8 +243,8 @@ input[type="checkbox"] {
 }
 
 .ringMoving {
-  height: 200px;
-  line-height: 200px;
+  height: 125;
+  line-height: 125px;
   text-align: center;
   font-size: 4em;
   animation: goaround 0.2s linear infinite;
@@ -267,17 +353,6 @@ input[type="checkbox"] {
       font-size: 60px;
       visibility: hidden;
       z-index: 2;
-  }
-  
-  .gameMain {
-      display: flex;
-      flex-direction: column;
-      visibility: hidden;
-      width: 75%;
-      height:800px;
-      margin-left:auto;
-      margin-right:auto;
-      top: 10%;
   }
   
   .welcome {
@@ -430,4 +505,83 @@ input[type="checkbox"] {
     align-items: center;
     justify-content: center;
     color: black;
+  }
+
+  .lock-container {
+    width: 360px;
+    height: 360px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 100%;
+    z-index:999;
+  }
+  
+  .lock {
+    background-color: #a0d92b;
+    width: 224px;
+    height: 218px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -204px;
+    margin-left: -212px;
+   /* animation: wiggle 1.5s linear infinite alternate; */
+  }
+  .lock:before, .lock:after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    animation: close 3s linear infinite alternate;
+  }
+  .lock:before {
+    border-top: 30px solid #a0d92b;
+    border-left: 30px solid #a0d92b;
+    border-right: 30px solid #a0d92b;
+    border-radius: 7px 10px 0 0;
+    width: 160px;
+    height: 112px;
+    top: -120px;
+    transform-origin: 0px 0;
+  }
+  .lock:after {
+    width: 3px;
+    background-color: #a0d92b;
+    height: 15px;
+    top: -11px;
+  }
+  .lock .keyhole {
+    position: absolute;
+    width: 204px;
+    height: 207px;
+    background-color: #fff;
+    border-radius: 5px;
+    top: 206px;
+    left: 2010px;
+  }
+  
+  @keyframes close {
+    0%, 10% {
+      transform: translate(0%, 0%);
+    }
+    20%, 100% {
+      transform: translate(0%, 8px);
+    }
+  }
+  @keyframes wiggle {
+    0%, 10%, 20%, 30%, 40% {
+      transform: rotate(0);
+    }
+    40%, 50%, 60%, 70%, 80% {
+      transform: rotate(10deg);
+    }
+    45%, 55%, 65%, 75%, 85% {
+      transform: rotate(-10deg);
+    }
+    85%, 100% {
+      transform: rotate(0);
+    }
   }

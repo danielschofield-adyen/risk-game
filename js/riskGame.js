@@ -30,10 +30,10 @@ async function play() {
     let res = await callServer(url, data);
     const dbData =
     {
-        "pspReference":res.pspReference,
-        "shopperReference":res.merchantReference,
-        "fraudScore":res.fraudResult.accountScore,
-        "resultCode":res.resultCode
+        "pspReference": (res) ? res.pspReference : "",
+        "shopperReference":(res) ? res.merchantReference : "",
+        "fraudScore":(res) ? res.fraudResult.accountScore : "",
+        "resultCode":(res) ? res.resultCode : ""
     }
     let dbRes = await insertToDatabase(dbUrl,dbData);
     console.log("Result is > ", res);
