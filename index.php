@@ -3,6 +3,7 @@
 <head>
     <title>Risk Game</title>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <script src="js/riskGame.js"></script>
 
