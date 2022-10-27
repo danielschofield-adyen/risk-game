@@ -10,10 +10,6 @@
 <script>
 let shopperReference = "";
 
-const closeGameResults = () => {
-    document.getElementById("gameDiv").style.visibility = "hidden";
-}
-
 const playGameDeclined = () => {
     document.getElementById("gameDiv").style.visibility = "visible";
     let transaction = {};
@@ -42,6 +38,7 @@ const startDev = async() =>
 {
   let tap = document.getElementById('tap');
   let shopperName = document.getElementById('shopperName');
+  let welcome = document.getElementById('welcome');
   let gameMain = document.getElementById('gameMain');
 
   // Hide title
@@ -58,7 +55,10 @@ const startDev = async() =>
 
   if(tap) tap.style.visibility = "hidden";
   if(shopperName) shopperName.innerHTML  = "Welcome " + shopperReference;
-  if(gameMain) gameMain.style.visibility = "visible";
+  if(gameMain) {
+    gameMain.style.visibility = "visible";
+    welcome.style.visibility = "visible";
+  }
   /*document.getElementById('shopperName').innerHTML = "Welcome " + shopperReference;
   document.getElementById('gameMain').style.visibility = "visible";*/
 }
@@ -80,6 +80,7 @@ const start = async () => {
 }
 
 const exit = () => {
+    alert("go");
     location.reload();
 }
 
@@ -115,12 +116,17 @@ const pullHandle = () =>
 </div>
 -->
 
+
 <div class="main">
 
 <div class="start" id="start"><div onclick="startDev()">TOUCH TO START THE GAME</div>
 <div class="terminalID"><input id="terminalID" value="V400m-347148879"/><button class="terminalIDButton" onclick="assignTerminalId()">assign</button></div></div>
-
 <div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
+<div id="welcome" class="welcome">
+  <div id="shopperName"></div>
+    <button class="logoutButton" onClick="exit()">Logout</button>
+</div>
+
 
 <div id="parentContainer">
   <div class="gameMain" id="gameMain">
@@ -187,9 +193,8 @@ const pullHandle = () =>
       
 
 <div class="gameDiv" id="gameDiv">
-    <div class="closeDiv"><button onclick="closeGameResults()" class="closeButton">X</button></div>
     <div class="popup">
-        <iframe title="Game iframe" class="gameIframe" id="gameIframe" src="backend/results.php"></iframe>
+        <iframe title="Game iframe" class="gameIframe" id="gameIframe" src="backend/results.php" allowtransparency="true"></iframe>
     </div>
 </div>
 

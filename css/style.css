@@ -24,6 +24,8 @@ body {
 {
   width:1649px;
   height: 1062px;
+  width:1649px;
+  height: 1062px;
   margin:auto;
 }
 
@@ -345,10 +347,10 @@ input[type="checkbox"] {
   
   .popup {
       position:absolute;
-      top: 50px;
-      left: 50px;
-      width: 90vw;
-      height: 90vh;
+      top: 174px;
+      left: 169px;
+      width: 1107px;
+      height: 770px;
       overflow-wrap: break-word;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -387,8 +389,8 @@ input[type="checkbox"] {
       position: absolute;
       top: 0px;
       left: 0px;
-      width: 100vw;
-      height: 100vh;
+      width:1649px;
+      height: 1062px;
   }
   
   
@@ -399,8 +401,8 @@ input[type="checkbox"] {
       justify-content: center;
       top: 0px;
       left: 0px;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       font-size: 70px;
       z-index: 1;
   }
@@ -412,22 +414,35 @@ input[type="checkbox"] {
       justify-content: center;
       top: 0px;
       left: 0px;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       font-size: 60px;
       visibility: hidden;
       z-index: 2;
   }
   
   .welcome {
-      font-size: 20px;
-      z-index: 3;
+      position:absolute;
+      top:0px;
+      left:0px;
+      width:100%;
+      font-size: 24px;
       display: flex;
-      align-items: center;
+      align-items: top;
       justify-content:space-between;
-      background-color: white;
-      color: #00112C;
+      color: #0ABF53;
+      visibility: hidden;
       padding: 10px;
+      padding-top:5px;
+  }
+
+  .logoutButton {
+    margin-right:20px;
+    background-color: #00112C;
+    color: white;
+    font-size: 20px;
+    border: 1px solid white;
+    padding: 10px;
   }
   
   .terminalID {
@@ -497,19 +512,21 @@ input[type="checkbox"] {
   }
   
   .finalrisk {
-    align-self: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     color: #000000;
     font-size: 80px;
   }
   
   .oneResult {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:space-between;
     padding-left: 50px;
     font-size: 18px;
     color: black;
+    width: 300px;
   }
   
   .approved {
@@ -519,9 +536,6 @@ input[type="checkbox"] {
     width: 100%;
     background-color: #000000;
     color: white;
-    grid-column-start: 1;
-    grid-column-end: 5;
-    justify-self: center;
     font-size: 50px;
   }
      
@@ -649,3 +663,27 @@ input[type="checkbox"] {
       transform: rotate(0);
     }
   }
+
+.resultsParent {
+  display: grid;
+  grid-template-rows: 310px 145px 315px;
+  grid-template-columns: 1107px;
+}
+
+.upperResult {
+  display: grid;
+  grid-template-columns: 700px 407px;
+  background-color:rgba(255,255,255,0.95);
+  width:100%;
+}
+
+.midResult {
+  background:none transparent
+}
+
+.lowerResult {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: white;
+  width:100%;
+}

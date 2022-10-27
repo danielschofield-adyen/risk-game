@@ -28,6 +28,10 @@ async function play() {
     
     console.log("Call the /Payments API with following data => " , data);
     let res = await callServer(url, data);
+
+    console.log("Result is > ", res);
+    displayResult(res);
+
     const dbData =
     {
         "pspReference": (res) ? res.pspReference : "",
@@ -36,8 +40,7 @@ async function play() {
         "resultCode":(res) ? res.resultCode : ""
     }
     let dbRes = await insertToDatabase(dbUrl,dbData);
-    console.log("Result is > ", res);
-    displayResult(res);
+
 };
   
 async function callServer(url, data) {
@@ -107,6 +110,8 @@ const displayResult = (data) => {
         return
     }
 
+    console.log("Risk data > ", data);
+
     // Display risk score
     const resultscore =  parseInt(data.fraudResult.accountScore);
     document.getElementById("finalrisk").innerHTML = resultscore;
@@ -114,7 +119,7 @@ const displayResult = (data) => {
     // Display transaction status
     if (resultscore >= 100) {
         document.getElementById("approvedDeclined").innerHTML = "Transaction declined";
-        document.getElementById("approvedDeclined").style.backgroundColor = "red";
+        document.getElementById("approvedDeclined").style.backgroundColor = "rgba(255,0,0,0.95)";
     }
     else {
         document.getElementById("approvedDeclined").innerHTML = "Transaction approved";

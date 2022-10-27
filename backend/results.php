@@ -3,6 +3,9 @@
 
 <head>
   <link rel="stylesheet" href="../css/style.css">
+    <style>
+    body {background:none transparent;}
+    </style>
 
 <title>Risk Game Results</title>
 
@@ -32,6 +35,37 @@ window.addEventListener('message', receive);
 
 <body>
 
+<div class="resultsParent">
+    <div class="upperResult"><div class="approved" id="approvedDeclined">-</div><div class="finalrisk" id="finalrisk"></div></div>
+    <div class="midResult"></div>
+    <div class="lowerResult">
+        
+    <div class="oneResult"><div>Amount</div><img src="img/amount.png" width="40"></div>
+        <div class="rawdata" id="rawdata_amount"></div>
+        <div class="textResult norisk" id="CustomFieldCheck-AmountCheck">-</div>
+    
+        <div class="oneResult"><div>Currency</div><img src="img/ccy_jpy.png" class="categoryIcon"></div>
+        <div class="rawdata" id="rawdata_currency"></div>
+        <div class="textResult norisk" id="CustomFieldCheck-CurrencyCheck">-</div>
+    
+        
+        <div class="oneResult"><div>Shopper Country</div><img src="img/shooperCountry.png" class="categoryIcon"></div>
+    <div class="rawdata" id="rawdata_shopperCountry"></div>
+    <div class="textResult norisk" id="CustomFieldCheck-ShopperCountryCodeCheck">-</div>
+
+    <div class="oneResult"><div>Delivery Country</div><img src="img/playAgain.png" class="categoryIcon"></div>
+    <div class="rawdata" id="rawdata_deliveryCountry"></div>
+    <div class="textResult norisk" id="CustomFieldCheck-DeliveryCountryCheck">-</div>
+
+    <div class="oneResult"><div>Account Age</div><img src="img/account.png" class="categoryIcon"></div>
+    <div class="rawdata" id="rawdata_accountAge"></div>
+    <div class="textResult norisk" id="CustomFieldCheck-AccountAgeLessThanAWeek">-</div>
+    
+    
+    </div>
+</div>
+
+<!--
 <div class="result" id='resultDiv'>
     <div class="colspan resultTitle">Risk Game Results</div>
     
@@ -65,5 +99,6 @@ window.addEventListener('message', receive);
     <div class="approved" id="approvedDeclined">-</div>
 
 </div>
+-->
 
 </html>

@@ -3,6 +3,7 @@ const config = {
     
     onSpinStart: (symbols) => {
       console.log("onSpinStart", symbols);
+      document.getElementById("gameDiv").style.visibility = "hidden"
       let transaction = {};
       transaction.amount = symbols.amount;
       transaction.currency = symbols.currency;
@@ -18,7 +19,7 @@ const config = {
 
       setTimeout(() => {
         document.getElementById("gameDiv").style.visibility = "visible"
-      }, 2000)
+      }, 500)
     }
 };
 

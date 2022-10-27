@@ -28,7 +28,7 @@ if(!$db) {
    echo "Error : Unable to open database\n";
 } else {
    echo "Opened database successfully\n";
-   $insert_query = "INSERT INTO leaderboard VALUES ('$pspReference','$shopperReference','$fraudScore','$resultCode')";
+   $insert_query = "INSERT INTO leaderboard (\"psp_reference\",\"shopper_reference\",\"fraud_score\",\"result_code\") VALUES ('$pspReference','$shopperReference','$fraudScore','$resultCode')";
     $result = pg_query($db,$insert_query);
     return $result;
 }

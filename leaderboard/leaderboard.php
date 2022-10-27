@@ -14,7 +14,7 @@
 		return;
 		} else {
 		//echo "Opened database successfully\n";
-		$select_query = "SELECT psp_reference,shopper_reference,fraud_score,result_code FROM leaderboard LIMIT 20";
+		$select_query = "SELECT psp_reference,shopper_reference,fraud_score,result_code FROM leaderboard order by creation_date desc limit 20";
 		$result = pg_query($db,$select_query);
 		$html = '';
 
@@ -42,6 +42,12 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">	
+<script>
+window.setTimeout( function() {
+	window.location.reload();
+}, 5000);
+</script>
+
 </head>
 <body>
 	<section class="main-content">
