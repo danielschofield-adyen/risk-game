@@ -52,7 +52,7 @@ class Slot
     
     var index = 0;
     var timeout = 100;
-    this.onSpinStart(this.controller.getResults());
+
     this.reels.forEach(reel =>
       {
         reel.updateSymbols(this.controller.pools[index].getShuffled())
@@ -63,6 +63,7 @@ class Slot
         timeout = timeout + 300;
       })
 
+      this.onSpinStart(this.controller.getResults());
       setTimeout(() => 
       {
         this.onSpinEnd(this.controller.getResults())

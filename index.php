@@ -166,7 +166,25 @@ const pullHandle = () =>
   </div>
 </div>
 
+<div id="resultsParentContainer">
+  <div id="resultDiv">
+    <div id="resultScreen">
+      <div id="innerResult">
+        <div id="innerGameResult">
+          <div id="resultTopDiv" class="resultDiv">
+
+          </div>
+          <div id="resultBottomDiv" class="resultDiv">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="../js/all.js"></script>
+      
 
 <div class="gameDiv" id="gameDiv">
     <div class="closeDiv"><button onclick="closeGameResults()" class="closeButton">X</button></div>

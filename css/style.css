@@ -103,6 +103,7 @@ body {
   float:left;
   background-image: url("../assets/handle1.svg");
   background-repeat: no-repeat;
+  z-index:11;
 }
 
 #handle:focus {
@@ -156,6 +157,67 @@ body {
 
 /* ----------------------------------------- */
 
+/* ---- Result Div -----*/
+
+#resultsParentContainer
+{
+  position:absolute;
+  z-index: 10;
+  width:100%;
+  height: 100%;
+  top:0px;
+  visibility: hidden;
+}
+
+#resultDiv
+{
+  width:1649px;
+  height: 1062px;
+  margin:auto;
+}
+
+#resultScreen
+{
+  width:1649px;
+  height:1062px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#innerResult
+{
+  width:1448.25px;
+  height:1061.25px;
+  float:left;
+}
+
+#innerGameResult {
+  width: 1112.25px;
+  height: 773.25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  margin-top: 173px;
+}
+
+.resultDiv
+{
+  width:1109.25px;
+  height:319.25px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+#resultBottomDiv
+{
+  margin-top:127px;
+  height:326px;
+}
+
 #controls {
   background-color: white;
   height: 50px;
@@ -198,6 +260,8 @@ input[type="checkbox"] {
 .icons > div
 {
   padding:5%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .icons > div > img
