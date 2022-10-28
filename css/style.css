@@ -43,20 +43,22 @@ body {
 
 #headingsContent {
   width: 1103.25px;
-  height: 50px;
   margin:auto;
   margin-top:181px;
   display: flex;
- /* align-items: center;
-  justify-content: center;*/
+  justify-content: top;
+  align-items: center;
+  justify-content: center;
 }
 
-.heading
-{
+.heading {
   overflow: hidden;
   width: 20%;
   margin: 5px;
   float:left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #slot
@@ -666,7 +668,7 @@ input[type="checkbox"] {
 
 .resultsParent {
   display: grid;
-  grid-template-rows: 260px 145px 315px;
+  grid-template-rows: 255px 145px 320px;
   grid-template-columns: 1107px;
 }
 

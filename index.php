@@ -4,6 +4,7 @@
     <title>Risk Game</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
+
 </head>
 <script src="js/riskGame.js"></script>
 
@@ -54,7 +55,7 @@ const startDev = async() =>
 
 
   if(tap) tap.style.visibility = "hidden";
-  if(shopperName) shopperName.innerHTML  = "Welcome " + shopperReference;
+  if(shopperName) shopperName.innerHTML  = "ようこそ、" + shopperReference + "さん";
   if(gameMain) {
     gameMain.style.visibility = "visible";
     welcome.style.visibility = "visible";
@@ -118,9 +119,9 @@ const pullHandle = () =>
 
 <div class="main">
 
-<div class="start" id="start"><div onclick="startDev()">TOUCH TO START THE GAME</div>
+<div class="start" id="start"><div onclick="startDev()"><!--TOUCH TO START THE GAME-->タップしてスタート</div>
 <div class="terminalID"><input id="terminalID" value="V400m-347148879"/><button class="terminalIDButton" onclick="assignTerminalId()">assign</button></div></div>
-<div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
+<div class="tap" id="tap"><!--TAP YOUR CARD ON THE TERMINAL-->ターミナルにカードをタップしてください</div>
 
 
 
@@ -128,15 +129,15 @@ const pullHandle = () =>
   <div class="gameMain" id="gameMain">
   <div id="welcome" class="welcome">
     <div id="shopperName"></div>
-      <button class="logoutButton" onClick="exit()">Logout</button>
+      <button class="logoutButton" onClick="exit()"><!--Logout-->ログアウト</button>
     </div>
     <div id="slot">
       <div id="headingsContent">
-        <div class="heading"><text style="padding-left:60px">Amount</text></div>
-        <div class="heading"><text style="padding-left:60px">Currency</text></div>
-        <div class="heading"><text style="padding-left:10px">Shopper location</text></div>
-        <div class="heading"><text style="padding-left:10px">Delivery location</text></div>
-        <div class="heading"><text style="padding-left:30px">Account age</text></div>
+        <div class="heading"><!--Amount-->購入額</div>
+        <div class="heading"><!--Currency-->通貨</div>
+        <div class="heading"><!--Shopper location-->ショッパーの場所</div>
+        <div class="heading"><!--Delivery location-->配送場所</div>
+        <div class="heading"><!--Account age-->利用年数</div>
       </div>
       <div id="reels">
         <div class="reel"></div>

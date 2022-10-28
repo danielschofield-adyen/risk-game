@@ -26,7 +26,7 @@
 			$html .= '	<td>'.$data['psp_reference'].'</td>';
 			$html .= '	<td>'.$data['shopper_reference'].'</td>';
 			$html .= '	<td>'.$data['fraud_score'].'</td>';
-			$html .= '	<td>'.$data['result_code'].'</td>';
+			$html .= '	<td>'.($data['result_code']=="Refused" ? "拒否" : "承認").'</td>';
 			$html .= '</tr>';
 		}
 
@@ -40,7 +40,7 @@
 			$html2 .= '<div class="col-sm-4">';
 			$html2 .= '<div class="leaderboard-card">';
 			$html2 .= '<div class="leaderboard-card__top" style="background-color:#00112C; color:#0ABF53">';
-			$html2 .= '<h3 class="text-center">Score = '.$data['count'].'</h3>';
+			$html2 .= '<h3 class="text-center">スコア = '.$data['count'].'</h3>';
 			$html2 .= '</div>';
 			$html2 .= '<div class="leaderboard-card__body">';
 			$html2 .= '<div class="text-center">';
@@ -63,7 +63,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Leaderboard UI Design</title>
+	<title>Leaderboard</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -79,7 +79,7 @@ window.setTimeout( function() {
 	<br/>
 
 	<div class="container">
-		<h1>Top performances</h1>
+		<h1><!--Top performances-->ベストスコア</h1>
 		<br/>
 		<div class="row">
 			<?php echo $html2;?>
@@ -88,10 +88,10 @@ window.setTimeout( function() {
 		<table class="table">
 		<thead>
 			<tr>
-				<th>PSP Reference</th>
-				<th>Shopper Reference</th>
-				<th>Fraud Score</th>
-				<th>Result Code</th>
+				<th><!--PSP Reference-->取引番号</th>
+				<th><!--Shopper Reference-->名前</th>
+				<th><!--Fraud Score-->不正利用スコア</th>
+				<th><!--Result Code-->結果コード</th>
 			</tr>
 		</thead>
 		<tbody>

@@ -118,11 +118,13 @@ const displayResult = (data) => {
 
     // Display transaction status
     if (resultscore >= 100) {
-        document.getElementById("approvedDeclined").innerHTML = "Transaction declined";
+        //document.getElementById("approvedDeclined").innerHTML = "Transaction declined";
+        document.getElementById("approvedDeclined").innerHTML = "決済拒否";
         document.getElementById("approvedDeclined").style.backgroundColor = "rgba(255,0,0,0.95)";
     }
     else {
-        document.getElementById("approvedDeclined").innerHTML = "Transaction approved";
+        //document.getElementById("approvedDeclined").innerHTML = "Transaction approved";
+        document.getElementById("approvedDeclined").innerHTML = "決済承認";
         document.getElementById("approvedDeclined").style.backgroundColor = "#0ABF53";
     }
     
@@ -130,11 +132,11 @@ const displayResult = (data) => {
     const customRulesCheckList = data.fraudResult.results
 
     for (let item of resultRulesList) {
-        document.getElementById(item).innerHTML = "no risk triggered";
+        document.getElementById(item).innerHTML = "リスクなし";
     }
 
     for (let item of customRulesCheckList) {
-        document.getElementById(item.name).innerHTML = "Rule triggered [ +" + item.accountScore + " ]";
+        document.getElementById(item.name).innerHTML = "リスクあり [+" + item.accountScore + "]";
         document.getElementById(item.name).style.color = "red";
     }
 }
@@ -150,7 +152,8 @@ async function cardAcquisiton(terminalID) {
     let res = await callServer(url, data);
   
     if (!res) {
-        return "Guest";
+        //return "Guest";
+        return "ゲスト";
     }
 
     console.log("Result is > ", res);
