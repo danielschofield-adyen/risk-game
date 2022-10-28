@@ -37,8 +37,6 @@ window.addEventListener('message', receive);
 
 <div class="resultsParent">
 
-    <div></div>
-
     <div class="upperResult"><div class="approved" id="approvedDeclined">-</div><div class="finalrisk" id="finalrisk"></div></div>
     <div class="midResult"></div>
     <div class="lowerResult">

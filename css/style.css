@@ -347,10 +347,10 @@ input[type="checkbox"] {
   
   .popup {
       position:absolute;
-      top: 174px;
+      top: 220px;
       left: 169px;
-      width: 1107px;
-      height: 770px;
+      width: 1105px;
+      height: 722px;
       overflow-wrap: break-word;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -358,7 +358,6 @@ input[type="checkbox"] {
   .gameIframe {
       width: 100%;
       height: 100%;
-      border: 1px solid white;
   }
   
   .closeDiv {
@@ -667,7 +666,7 @@ input[type="checkbox"] {
 
 .resultsParent {
   display: grid;
-  grid-template-rows: 50px 260px 145px 315px;
+  grid-template-rows: 260px 145px 315px;
   grid-template-columns: 1107px;
 }
 
