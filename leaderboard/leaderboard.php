@@ -31,7 +31,7 @@
 		}
 
 		//TOP 3 PERFORMERS
-		$select_query = "SELECT shopper_reference, count(psp_reference) FROM leaderboard WHERE CAST (fraud_score AS INTEGER) < 100 GROUP BY shopper_reference ORDER BY count(psp_reference) DESC LIMIT 2";
+		$select_query = "SELECT shopper_reference, count(psp_reference) FROM leaderboard WHERE CAST (fraud_score AS INTEGER) < 100 GROUP BY shopper_reference ORDER BY count(psp_reference) DESC LIMIT 3";
 		$result = pg_query($db,$select_query);
 		$html2 = '';
 
