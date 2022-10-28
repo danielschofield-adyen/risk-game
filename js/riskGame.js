@@ -1,7 +1,7 @@
 let transaction = {}
 
 const amountList = [500, 1000, 5000, 8000, 10000, 15000, 50000, 150000];
-const currencyList = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "YEN"];
+const currencyList = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "JPY"];
 const shopperCountryList = ["AU", "CN", "HK", "JP", "SG", "KR", "TW"];
 const deliveryCountryList = ["AU", "CN", "HK", "JP", "SG", "KR", "TW"];
 const accountAgeList = [10, 100, 240, 8760, 43800];
@@ -35,7 +35,7 @@ async function play() {
     const dbData =
     {
         "pspReference": (res) ? res.pspReference : "",
-        "shopperReference":(res) ? res.merchantReference : "",
+        "shopperReference":(res) ? transaction.shopperReference : "",
         "fraudScore":(res) ? res.fraudResult.accountScore : "",
         "resultCode":(res) ? res.resultCode : ""
     }

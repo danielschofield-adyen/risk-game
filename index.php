@@ -80,7 +80,6 @@ const start = async () => {
 }
 
 const exit = () => {
-    alert("go");
     location.reload();
 }
 
@@ -122,14 +121,15 @@ const pullHandle = () =>
 <div class="start" id="start"><div onclick="startDev()">TOUCH TO START THE GAME</div>
 <div class="terminalID"><input id="terminalID" value="V400m-347148879"/><button class="terminalIDButton" onclick="assignTerminalId()">assign</button></div></div>
 <div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
-<div id="welcome" class="welcome">
-  <div id="shopperName"></div>
-    <button class="logoutButton" onClick="exit()">Logout</button>
-</div>
+
 
 
 <div id="parentContainer">
   <div class="gameMain" id="gameMain">
+  <div id="welcome" class="welcome">
+    <div id="shopperName"></div>
+      <button class="logoutButton" onClick="exit()">Logout</button>
+    </div>
     <div id="slot">
       <div id="headingsContent">
         <div class="heading"><text style="padding-left:60px">Amount</text></div>
@@ -172,31 +172,14 @@ const pullHandle = () =>
   </div>
 </div>
 
-<div id="resultsParentContainer">
-  <div id="resultDiv">
-    <div id="resultScreen">
-      <div id="innerResult">
-        <div id="innerGameResult">
-          <div id="resultTopDiv" class="resultDiv">
-
-          </div>
-          <div id="resultBottomDiv" class="resultDiv">
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script src="../js/all.js"></script>
-      
 
 <div class="gameDiv" id="gameDiv">
     <div class="popup">
         <iframe title="Game iframe" class="gameIframe" id="gameIframe" src="backend/results.php" allowtransparency="true"></iframe>
-    </div>
+  </div>
 </div>
+
 
 </div>
 

@@ -14,11 +14,13 @@
 		return;
 		} else {
 		//echo "Opened database successfully\n";
-		$select_query = "SELECT psp_reference,shopper_reference,fraud_score,result_code FROM leaderboard order by creation_date desc limit 20";
+		
+		//TRANSACTION LIST
+		$select_query = "SELECT psp_reference,shopper_reference,fraud_score,result_code FROM leaderboard ORDER BY creation_date DESC LIMIT 20";
 		$result = pg_query($db,$select_query);
 		$html = '';
 
-		while($data = pg_fetch_array($result)) {
+		while ($data = pg_fetch_array($result)) {
 	
 			$html .= '<tr>';
 			$html .= '	<td>'.$data['psp_reference'].'</td>';
@@ -27,6 +29,30 @@
 			$html .= '	<td>'.$data['result_code'].'</td>';
 			$html .= '</tr>';
 		}
+
+		//TOP 3 PERFORMERS
+		$select_query = "SELECT shopper_reference, count(psp_reference) FROM leaderboard WHERE CAST (fraud_score AS INTEGER) < 100 GROUP BY shopper_reference ORDER BY count(psp_reference) DESC LIMIT 2";
+		$result = pg_query($db,$select_query);
+		$html2 = '';
+
+		while ($data = pg_fetch_array($result)) {
+	
+			$html2 .= '<div class="col-sm-4">';
+			$html2 .= '<div class="leaderboard-card">';
+			$html2 .= '<div class="leaderboard-card__top" style="background-color:#00112C; color:#0ABF53">';
+			$html2 .= '<h3 class="text-center">Score = '.$data['count'].'</h3>';
+			$html2 .= '</div>';
+			$html2 .= '<div class="leaderboard-card__body">';
+			$html2 .= '<div class="text-center">';
+			$html2 .= '<img src="img/user2.jpg" class="circle-img mb-2" alt="User Img">';
+			$html2 .= '<h5 class="mb-0">'.$data['shopper_reference'].'</h5>';
+			$html2 .= '</div>';
+			$html2 .= '</div>';
+			$html2 .= '</div>';
+			$html2 .= '</div>';
+		}
+
+
 	}
 
 	//every minute
@@ -50,119 +76,29 @@ window.setTimeout( function() {
 
 </head>
 <body>
-	<section class="main-content">
-		<div class="container">
-			<h1>Top Gainers</h1>
-			<br>
-			<br>
+	<br/>
 
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="leaderboard-card">
-						<div class="leaderboard-card__top">
-							<h3 class="text-center">$1,051</h3>
-						</div>
-						<div class="leaderboard-card__body">
-							<div class="text-center">
-								<img src="img/user2.jpg" class="circle-img mb-2" alt="User Img">
-								<h5 class="mb-0">Sandeep Sandy</h5>
-								<p class="text-muted mb-0">@sandeep</p>
-								<hr>
-								<div class="d-flex justify-content-between align-items-center">
-									<span><i class="fa fa-map-marker"></i> Bangalore</span>
-									<button class="btn btn-outline-success btn-sm">Congratulate</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="leaderboard-card leaderboard-card--first">
-						<div class="leaderboard-card__top">
-							<h3 class="text-center">$1,254</h3>
-						</div>
-						<div class="leaderboard-card__body">
-							<div class="text-center">
-								<img src="img/user1.jpg" class="circle-img mb-2" alt="User Img">
-								<h5 class="mb-0">Kiran Acharya</h5>
-								<p class="text-muted mb-0">@kiranacharyaa</p>
-								<hr>
-								<div class="d-flex justify-content-between align-items-center">
-									<span><i class="fa fa-map-marker"></i> Bangalore</span>
-									<button class="btn btn-outline-success btn-sm">Congratulate</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="leaderboard-card">
-						<div class="leaderboard-card__top">
-							<h3 class="text-center">$1,012</h3>
-						</div>
-						<div class="leaderboard-card__body">
-							<div class="text-center">
-								<img src="img/user3.jpg" class="circle-img mb-2" alt="User Img">
-								<h5 class="mb-0">John doe</h5>
-								<p class="text-muted mb-0">@johndoe</p>
-								<hr>
-								<div class="d-flex justify-content-between align-items-center">
-									<span><i class="fa fa-map-marker"></i> Bangalore</span>
-									<button class="btn btn-outline-success btn-sm">Congratulate</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<h4>All Users</h4>
-
-			<table class="table">
-				<thead>
-					<tr>
-						<th>PSP Reference</th>
-						<th>Shopper Reference</th>
-						<th>Fraud Score</th>
-						<th>Result Code</th>
-					</tr>
-				</thead>
-				<tbody>
-				<?php echo $html;?>
-					<!--<tr>
-						<td>PSP Reference</td>
-						<td>Shopper Reference</td>
-						<td>Fraud Score</td>
-						<td>Result Code</td>
-					</tr>-->
-					<!--
-					<tr>
-						<td>
-							<div class="d-flex align-items-center">
-								<img src="img/user5.jpg" class="circle-img circle-img--small mr-2" alt="User Img">
-								<div class="user-info__basic">
-									<h5 class="mb-0">Tom harry</h5>
-									<p class="text-muted mb-0">@tomharry</p>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="d-flex align-items-baseline">
-								<h4 class="mr-1">$951</h4><small class="text-success"><i class="fa fa-arrow-up"></i>5%</small>
-							</div>
-						</td>
-						<td>Bangalore</td>
-						<td>kiran@kiranmail.com</td>
-						<td>
-							<button class="btn btn-success btn-sm">Congratulate</button>
-						</td>
-					</tr>
-				-->
-				</tbody>
-			</table>
+	<div class="container">
+		<h1>Top performances</h1>
+		<br/>
+		<div class="row">
+			<?php echo $html2;?>
 		</div>
-	</section>
+
+		<table class="table">
+		<thead>
+			<tr>
+				<th>PSP Reference</th>
+				<th>Shopper Reference</th>
+				<th>Fraud Score</th>
+				<th>Result Code</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php echo $html;?>
+		</tbody>
+		</table>
+	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

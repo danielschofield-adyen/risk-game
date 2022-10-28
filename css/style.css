@@ -358,7 +358,6 @@ input[type="checkbox"] {
   .gameIframe {
       width: 100%;
       height: 100%;
-      z-index: -1;
       border: 1px solid white;
   }
   
@@ -382,6 +381,7 @@ input[type="checkbox"] {
   
   .gameDiv {
       visibility: hidden;
+      z-index: 0;
   }
   
   
@@ -434,6 +434,7 @@ input[type="checkbox"] {
       visibility: hidden;
       padding: 10px;
       padding-top:5px;
+      z-index: -1;
   }
 
   .logoutButton {

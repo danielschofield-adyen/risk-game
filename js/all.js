@@ -306,7 +306,7 @@ class FlagDataModel
 
 class CurrencyDataModel
 {
-    data = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "YEN"];
+    data = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "JPY"];
 }
 
 class AmountDataModel
