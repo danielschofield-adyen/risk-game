@@ -352,7 +352,7 @@ input[type="checkbox"] {
       top: 223px;
       left: 169px;
       width: 1105px;
-      height: 722px;
+      height: 718px;
       overflow-wrap: break-word;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -668,7 +668,7 @@ input[type="checkbox"] {
 
 .resultsParent {
   display: grid;
-  grid-template-rows: 255px 145px 320px;
+  grid-template-rows: 255px 145px 316px;
   grid-template-columns: 1107px;
 }
 
