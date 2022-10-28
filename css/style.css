@@ -667,7 +667,7 @@ input[type="checkbox"] {
 
 .resultsParent {
   display: grid;
-  grid-template-rows: 310px 145px 315px;
+  grid-template-rows: 50px 260px 145px 315px;
   grid-template-columns: 1107px;
 }
 
