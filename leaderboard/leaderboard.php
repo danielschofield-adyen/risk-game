@@ -44,7 +44,7 @@
 			$html2 .= '</div>';
 			$html2 .= '<div class="leaderboard-card__body">';
 			$html2 .= '<div class="text-center">';
-			$html2 .= '<img src="img/user2.jpg" class="circle-img mb-2" alt="User Img">';
+			$html2 .= '<img src="img/user.png" class="circle-img mb-2" alt="User Img">';
 			$html2 .= '<h5 class="mb-0">'.$data['shopper_reference'].'</h5>';
 			$html2 .= '</div>';
 			$html2 .= '</div>';
