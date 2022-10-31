@@ -49,6 +49,7 @@ const startDev = async() =>
   // Call card acquisition
   let terminalID = document.getElementById('terminalID').value;
   shopperReference = await cardAcquisiton(terminalID);
+
   // Hide tap your card
   //document.getElementById('tap').style.visibility = "hidden";
   // Show welcome message
