@@ -65,7 +65,7 @@ body {
 {
   width:1448.25px;
   height:1061.25px;
-  background-image: url("../assets/slot-machine-bg.svg");
+  background-image: url("../assets/risk game apac background v2-svg.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -668,14 +668,14 @@ input[type="checkbox"] {
 
 .resultsParent {
   display: grid;
-  grid-template-rows: 252px 145px 320px;
+  grid-template-rows: 265px 140px 313px;
   grid-template-columns: 1107px;
 }
 
 .upperResult {
   display: grid;
   grid-template-columns: 700px 407px;
-  background-color:rgba(255,255,255,1);
+  background-color:rgba(255,255,255,0.95);
   width:100%;
 }
 
