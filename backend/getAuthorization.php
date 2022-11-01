@@ -44,7 +44,8 @@ $accountCreationDate = date("Y-m-d\TH:i:s+09:00", strtotime("-".$accountAgeInHou
 
 $data = array(
    "reference"=>"RiskGameTest",
-   "merchantAccount"=>"AdyenAPACEvent_SG_RiskGame_TEST", 
+   "merchantAccount"=>"AdyenAPACEvent_JP_TYO_Registration_TEST",
+   "store"=>"RiskGame",
    "shopperReference"=> $rawData['shopperReference'],
    "amount"=>array("value"=>$rawData['amount'],"currency"=>$rawData['currency']),
    "paymentMethod"=>$paymentMethod,
@@ -53,7 +54,8 @@ $data = array(
    "accountInfo"=>array("accountCreationDate"=>$accountCreationDate),
    "returnUrl"=>"http://localhost:8000/",
    "additionalData"=>array("allow3DS2"=>true),
-   "channel"=>"web"
+   "channel"=>"web",
+   "shopperInteraction"=>"Ecommerce"
 );
 $postdata = json_encode($data);
 
