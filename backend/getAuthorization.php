@@ -14,11 +14,14 @@ $headers = array(
 );
 
 switch($rawData['shopperCountry']) {
-   case "YE":
-      $shopperIP = "109.200.160.0";
+   case "HK":
+      $shopperIP = "1.178.208.0";
       break;
-   case "SD":
-      $shopperIP = "102.120.0.0";
+   case "KR":
+      $shopperIP = "1.11.0.0";
+      break;
+   case "VN":
+      $shopperIP = "1.52.0.0";
       break;
    default:
       $shopperIP = "1.179.112.0";

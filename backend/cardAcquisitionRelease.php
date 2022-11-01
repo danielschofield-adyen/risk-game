@@ -38,7 +38,7 @@ $data = array(
                     "OutputFormat"=>"Text",
                     "OutputText"=>array(
                         array(
-                          "Text"=> substr($rawData["shopperReference"], 0, 10)."様"
+                          "Text"=> "Hello"
                         ),
                         array(
                           "Text"=>"Welcome to the risk game"

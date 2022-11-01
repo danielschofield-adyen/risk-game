@@ -167,6 +167,7 @@ async function cardAcquisiton(terminalID) {
         propertiesObj[prop] = val;
     }
     let shopperReference = propertiesObj.shopperReference;
+    shopperReference = shopperReference.replace(/%20/g, " ");
     console.log("shopperReference is > ", shopperReference);
     
     if (!shopperReference) {
