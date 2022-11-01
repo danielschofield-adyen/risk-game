@@ -35,7 +35,9 @@ switch($rawData['threeeds']) {
       $paymentMethod = array("type"=>"scheme","number"=>"4111111111111111", "expiryMonth"=>"03", "expiryYear"=>"2030", "cvc"=>"737");
 }
 
-$accountCreationDate = date("Y-m-d\TH:i:s+09:00", strtotime("-".$rawData['accountAge']." hours"));
+$accountAgeInDays = $rawData['accountAge'];
+$accountAgeInHours = intval($accountAgeInDays) * 24;
+$accountCreationDate = date("Y-m-d\TH:i:s+09:00", strtotime("-".$accountAgeInHours." hours"));
 
 $data = array(
    "reference"=>"RiskGameTest",
