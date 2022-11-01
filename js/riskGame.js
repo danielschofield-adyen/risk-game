@@ -114,7 +114,7 @@ const displayResult = (data) => {
 
     // Display risk score
     const resultscore =  parseInt(data.fraudResult.accountScore);
-    document.getElementById("finalrisk").innerHTML = resultscore;
+    document.getElementById("finalrisk").innerHTML = resultscore +"/100";
 
     // Display transaction status
     if (resultscore >= 100) {

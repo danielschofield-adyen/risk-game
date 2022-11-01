@@ -48,9 +48,6 @@ class Slot
 
   spin() 
   {
-    this.spinButton.style.backgroundImage = "url(../assets/handle2.svg)";
-    setTimeout(() => this.spinButton.style.backgroundImage = "url(../assets/handle1.svg)",300);
-    
     var index = 0;
     var timeout = 100;
 
@@ -74,7 +71,6 @@ class Slot
           })
 
       }, 2500);
-
   }
 
   stop()
@@ -84,14 +80,18 @@ class Slot
 
   onSpinStart(symbols) 
   {
-    if(this.spinButton) this.spinButton.disabled = true;
     this.config.onSpinStart?.(symbols);
+    this.spinButton.disabled = true;
+    this.spinButton.style.marginTop = "534px";
+    this.spinButton.style.transform = "scaleY(-1)"
   }
 
   onSpinEnd(symbols) 
   {
     if(this.spinButton) this.spinButton.disabled = false;
     this.config.onSpinEnd?.(symbols);
+    this.spinButton.style.marginTop = "178px";
+    this.spinButton.style.transform = "scaleY(1)"
   }
 }
 
@@ -301,12 +301,12 @@ class GameController
 
 class FlagDataModel
 {
-    data = ["AU", "CN", "HK", "JP", "SG", "KR", "TW"];
+    data = ["AU", "VN", "HK", "JP", "SG", "KR", "TW"];
 }
 
 class CurrencyDataModel
 {
-    data = ["AUD", "CNY", "EUR", "HKD", "SGD", "USD", "JPY"];
+    data = ["AUD", "VND", "EUR", "HKD", "SGD", "USD", "JPY"];
 }
 
 class AmountDataModel
@@ -327,11 +327,11 @@ class AccountAgeDataModel
     data = [
       "1",
       "3",
-      "24",
-      "72",
-      "168",
-      "720",
-      "2160"
+      "7",
+      "14",
+      "30",
+      "60",
+      "90"
       ];
 }
 
