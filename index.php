@@ -56,7 +56,7 @@ const startDev = async() =>
 
 
   if(tap) tap.style.visibility = "hidden";
-  if(shopperName) shopperName.innerHTML  = "ようこそ、" + shopperReference + "さん";
+  if(shopperName) shopperName.innerHTML  = "Welcome " + shopperReference;
   if(gameMain) {
     gameMain.style.visibility = "visible";
     welcome.style.visibility = "visible";
@@ -120,9 +120,9 @@ const pullHandle = () =>
 
 <div class="main">
 
-<div class="start" id="start"><div onclick="startDev()"><!--TOUCH TO START THE GAME-->タップしてスタート</div>
+<div class="start" id="start"><div onclick="startDev()">TOUCH TO START THE GAME</div>
 <div class="terminalID"><input id="terminalID" value="V400m-347148879"/><button class="terminalIDButton" onclick="assignTerminalId()">assign</button></div></div>
-<div class="tap" id="tap"><!--TAP YOUR CARD ON THE TERMINAL-->ターミナルにカードをタップしてください</div>
+<div class="tap" id="tap">TAP YOUR CARD ON THE TERMINAL</div>
 
 
 
@@ -130,15 +130,15 @@ const pullHandle = () =>
   <div class="gameMain" id="gameMain">
   <div id="welcome" class="welcome">
     <div id="shopperName"></div>
-      <button class="logoutButton" onClick="exit()"><!--Logout-->ログアウト</button>
+      <button class="logoutButton" onClick="exit()"><!--Logout-->Logout</button>
     </div>
     <div id="slot">
       <div id="headingsContent">
-        <div class="heading"><!--Amount-->購入額</div>
-        <div class="heading"><!--Currency-->通貨</div>
-        <div class="heading"><!--Shopper location-->ショッパーの場所</div>
-        <div class="heading"><!--Delivery location-->配送場所</div>
-        <div class="heading"><!--Account age-->利用年数</div>
+        <div class="heading">Amount</div>
+        <div class="heading">Currency</div>
+        <div class="heading">Shopper location</div>
+        <div class="heading">Delivery location</div>
+        <div class="heading">Account age</div>
       </div>
       <div id="reels">
         <div class="reel"></div>

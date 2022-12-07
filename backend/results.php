@@ -41,24 +41,24 @@ window.addEventListener('message', receive);
     <div class="midResult"></div>
     <div class="lowerResult">
         
-    <div class="oneResult"><div><!--Amount-->購入額</div><img src="img/amount.png" width="40"></div>
+    <div class="oneResult"><div>Amount</div><img src="img/amount.png" width="40"></div>
         <div class="rawdata" id="rawdata_amount"></div>
         <div class="textResult norisk" id="CustomFieldCheck-AmountCheck">-</div>
     
-        <div class="oneResult"><div><!--Currency-->通貨</div><img src="img/ccy_jpy.png" class="categoryIcon"></div>
+        <div class="oneResult"><div>Currency</div><img src="img/ccy_jpy.png" class="categoryIcon"></div>
         <div class="rawdata" id="rawdata_currency"></div>
         <div class="textResult norisk" id="CustomFieldCheck-CurrencyCheck">-</div>
     
         
-        <div class="oneResult"><div><!--Shopper Location-->ショッパーの場所</div><img src="img/shooperCountry.png" class="categoryIcon"></div>
+        <div class="oneResult"><div>Shopper Location</div><img src="img/shooperCountry.png" class="categoryIcon"></div>
     <div class="rawdata" id="rawdata_shopperCountry"></div>
     <div class="textResult norisk" id="CustomFieldCheck-ShopperCountryCodeCheck">-</div>
 
-    <div class="oneResult"><div><!--Delivery Location-->配送場所</div><img src="img/playAgain.png" class="categoryIcon"></div>
+    <div class="oneResult"><div>Delivery Location</div><img src="img/playAgain.png" class="categoryIcon"></div>
     <div class="rawdata" id="rawdata_deliveryCountry"></div>
     <div class="textResult norisk" id="CustomFieldCheck-DeliveryCountryCheck">-</div>
 
-    <div class="oneResult"><div><!--Account Age-->利用年数</div><img src="img/account.png" class="categoryIcon"></div>
+    <div class="oneResult"><div>Account Age</div><img src="img/account.png" class="categoryIcon"></div>
     <div class="rawdata" id="rawdata_accountAge"></div>
     <div class="textResult norisk" id="CustomFieldCheck-AccountAgeLessThanAWeek">-</div>
     

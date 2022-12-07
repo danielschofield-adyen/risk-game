@@ -349,7 +349,7 @@ input[type="checkbox"] {
   
   .popup {
       position:absolute;
-      top: 223px;
+      top: 218px;
       left: 169px;
       width: 1105px;
       height: 718px;
@@ -668,13 +668,13 @@ input[type="checkbox"] {
 
 .resultsParent {
   display: grid;
-  grid-template-rows: 265px 140px 313px;
-  grid-template-columns: 1107px;
+  grid-template-rows: 255px 141px 319px;
+  grid-template-columns: 1100px;
 }
 
 .upperResult {
   display: grid;
-  grid-template-columns: 700px 407px;
+  grid-template-columns: 700px 400px;
   background-color:rgba(255,255,255,0.95);
   width:100%;
 }
