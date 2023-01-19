@@ -1,1 +1,5 @@
 start.sh
+start_home.sh
+*.mov
+.DS_Store
+**/.DS_Store
